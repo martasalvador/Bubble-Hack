@@ -18,15 +18,16 @@
 
 ## PLATFORMS
 
-- [  ] Plataformas
+- [ 💁‍♀️ ] Plataformas
+- [  ] Colisión plataformas por arriba
 
 ## PLAYER 
 
 - [ 💁‍♀️ ] AddEventListeners
 - Para movimiento fluido hay que asociar el eventlistener a un booleano para que funcione correctamente con el intervalo. Hay que usar keyup y keydown
 - [ 💁‍♀️ ] Dar movimiento al player
-- [  ] Salto y gravedad
-- [  ] Que no se salga de la pantalla
+- [ 💁‍♀️ ] Salto y gravedad
+- [ 💁‍♀️ ] Que no se salga de la pantalla
 - [  ] Colisión con Enemies
 - [  ] 3 vidas
 - [  ] Si encierra al enemigo con la burbuja --> Suma 100 puntos
