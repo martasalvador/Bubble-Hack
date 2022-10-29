@@ -20,7 +20,7 @@ const App = {
 	platforms: [],
 	enemy: [],
 	lives: 3,
-	time: 60,
+	time: 2000,
 	score: 0,
 
 	init() {
@@ -50,7 +50,7 @@ const App = {
 			this.calculateLives();
 
 			this.drawTime(`${this.time}`);
-			this.drawLives(`❤︎ ${this.lives}`);
+			this.drawLives(`${this.lives} ❤︎`);
 			this.drawScore();
 
 			this.isGameOver();
@@ -92,15 +92,17 @@ const App = {
 	detectCollision() {
 		this.platforms.forEach((p) => {
 			if (
-				this.player.playerPos.x < p.platformPos.x + p.platformSize.w &&
-				this.player.playerPos.x + this.player.playerSize.w > p.platformPos.x &&
-				this.player.playerPos.y < p.platformPos.y &&
-				this.player.playerPos.y + this.player.playerSize.h > p.platformPos.y
+				this.player.playerPos.x <= p.platformPos.x + p.platformSize.w &&
+				this.player.playerPos.x + this.player.playerSize.w >= p.platformPos.x &&
+				this.player.playerPos.y <= p.platformPos.y &&
+				this.player.playerPos.y + this.player.playerSize.h >= p.platformPos.y
 			) {
 				this.player.playerPos.y = p.platformPos.y - this.player.playerSize.h;
-				this.player.playerVel.y = 0;
+				if (this.player.playerVel.y > 0) {
+					// Esto es lo que he cambiado
+					this.player.playerVel.y = 0;
+				}
 			} else {
-				// ¿?
 			}
 		});
 	},
