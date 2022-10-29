@@ -31,6 +31,7 @@
 - [ 💁‍♀️ ] Salto y gravedad
 - [ 💁‍♀️ ] Mejorar gravedad
 - [ 💁‍♀️ ] Que no se salga de la pantalla
+- [ ] Volver a ver colisiones de salto con plataforma
 - [ ] Movimiento fluido
 - [ ] Colisión con Enemies
 - [ ] 3 vidas

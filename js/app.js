@@ -18,11 +18,14 @@ const App = {
 	background: undefined,
 	player: undefined,
 	platforms: [],
+	enemy: [],
+	lives: 3,
 
 	init() {
 		this.setContext();
 		this.setDimensions();
 		this.createPlayer();
+		this.createEnemy();
 
 		this.createPlatforms();
 		this.player.setListeners();
@@ -41,6 +44,8 @@ const App = {
 			this.clearAll();
 			this.drawAll();
 			this.detectCollision();
+			this.calculateLives();
+			this.drawText(`Lives: ${this.lives}`);
 		}, 60);
 	},
 	clearAll() {
@@ -54,6 +59,8 @@ const App = {
 			p.drawPlatform();
 		});
 
+		this.enemy.forEach((e) => e.drawEnemy());
+
 		this.player.drawPlayer();
 	},
 	createPlayer() {
@@ -66,6 +73,14 @@ const App = {
 			new Platform(this.ctx, this.canvasSize, 200, 470)
 		);
 	},
+	createEnemy() {
+		this.enemy.push(
+			new Enemy(this.ctx, this.canvasSize, 500, 130),
+			new Enemy(this.ctx, this.canvasSize, 400, 280),
+			new Enemy(this.ctx, this.canvasSize, 300, 430)
+		);
+	},
+
 	detectCollision() {
 		this.platforms.forEach((p) => {
 			if (
@@ -77,7 +92,31 @@ const App = {
 				this.player.playerPos.y = p.platformPos.y - this.player.playerSize.h;
 				this.player.playerVel.y = 0;
 			} else {
+				// ¿?
 			}
 		});
+	},
+	calculateLives() {
+		this.enemy.forEach((e) => {
+			if (
+				this.player.playerPos.x < e.enemyPos.x + e.enemySize.w &&
+				this.player.playerPos.x + this.player.playerSize.w > e.enemyPos.x &&
+				this.player.playerPos.y < e.enemyPos.y &&
+				this.player.playerPos.y + this.player.playerSize.h > e.enemyPos.y
+			) {
+				if (this.lives > 0) {
+					this.lives--;
+					this.player.playerPos.x = this.canvasSize.w - 800;
+					this.player.playerPos.y = this.canvasSize.h - this.player.playerSize.h - 100;
+				} else {
+					this.lives = 0;
+				}
+			}
+		});
+	},
+	drawText(text) {
+		this.ctx.fillStyle = "white";
+		this.ctx.font = "30px arial";
+		this.ctx.fillText(text, 100, 100);
 	},
 };
