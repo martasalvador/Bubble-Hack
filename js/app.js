@@ -18,7 +18,8 @@ const App = {
     init() {
         this.setContext()
         this.setDimensions()
-        this.setEventListeners()
+        this.createPlayer()
+        this.player.setListeners()
 
         this.start()
 
@@ -42,28 +43,11 @@ const App = {
     drawAll() {
         this.background = new Background(this.ctx, this.canvasSize)
         this.background.createBackground();
-
-        this.createPlayer()
+        this.player.drawPlayer()
     },
     createPlayer() {
         this.player = new Player(this.ctx, this.canvasSize, this.keys)
-        this.player.drawPlayer()
+
     },
-    setEventListeners() {
-        document.addEventListener('keydown', e => {
-            switch (e.key) {
-                case this.keys.RIGHT:
-                    this.player.moveRight()
-                    console.log(this.player)
-                    break
-                case this.keys.LEFT:
-                    this.player.moveLeft()
-                    console.log(e.key)
-                    break
-                case this.keys.UP:
-                    this.player.jump()
-                    break
-            }
-        })
-    }
+
 }

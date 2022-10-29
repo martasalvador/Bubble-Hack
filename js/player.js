@@ -8,7 +8,7 @@ class Player {
         this.playerVel = { x: 10, y: 2 };
         this.playerPhysics = { gravity: 0.4 };
 
-        //this.setListeners()
+        this.setListeners()
 
     }
     drawPlayer() {
@@ -18,33 +18,32 @@ class Player {
         this.movePlayer();
     }
     movePlayer() {
-        this.jump();
+        // this.jump();
         this.moveLeft();
         this.moveRight();
     }
     jump() {
-        /* if (this.playerPos.y > 20) {
+        if (this.playerPos.y > 20) {
             this.playerPos.y -= 10
-            this.playerVel.y -= 4;
-        } */
-        this.playerPos.y -= 10
-        this.playerVel.y -= 4;
+
+        }
+
     }
     moveRight() {
-        /* if (this.playerPos.x + this.playerSize.h < this.canvasSize.w - 20) {
+        if (this.playerPos.x + this.playerSize.h < this.canvasSize.w - 20) {
             this.playerPos.x += 10
-        } */
-        this.playerPos.x += 10
+        }
+
     }
 
     moveLeft() {
-        /* if (this.playerPos.x > 20) {
+        if (this.playerPos.x > 20) {
             this.playerPos.x -= 10
-        } */
-        this.playerPos.x -= 10
+        }
+
     }
 
-    /* setListeners() {
+    setListeners() {
         document.addEventListener('keydown', e => {
             switch (e.key) {
                 case this.keys.RIGHT:
@@ -59,6 +58,6 @@ class Player {
                     break
             }
         })
-    } */
+    }
 
 }
