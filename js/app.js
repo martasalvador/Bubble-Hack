@@ -20,6 +20,8 @@ const App = {
 	platforms: [],
 	enemy: [],
 	lives: 3,
+	time: 60,
+	score: 0,
 
 	init() {
 		this.setContext();
@@ -31,6 +33,7 @@ const App = {
 		this.player.setListeners();
 
 		this.start();
+		this.calculateTime();
 	},
 	setContext() {
 		this.ctx = document.querySelector("#canvas").getContext("2d");
@@ -45,7 +48,12 @@ const App = {
 			this.drawAll();
 			this.detectCollision();
 			this.calculateLives();
-			this.drawText(`Lives: ${this.lives}`);
+
+			this.drawTime(`${this.time}`);
+			this.drawLives(`❤︎ ${this.lives}`);
+			this.drawScore();
+
+			this.isGameOver();
 		}, 60);
 	},
 	clearAll() {
@@ -114,9 +122,49 @@ const App = {
 			}
 		});
 	},
-	drawText(text) {
+	drawLives(text) {
 		this.ctx.fillStyle = "white";
-		this.ctx.font = "30px arial";
-		this.ctx.fillText(text, 100, 100);
+		this.ctx.font = "25px monospace";
+		this.ctx.fillText(text, 60, 80);
+	},
+	calculateTime() {
+		setInterval(() => {
+			if (this.time > 0) this.time--;
+		}, 1000);
+	},
+	drawTime(text) {
+		this.ctx.fillStyle = "white";
+		this.ctx.font = "25px monospace";
+		this.ctx.fillText(text, 810, 80);
+	},
+	drawGameOver() {
+		this.ctx.fillStyle = "black";
+		this.ctx.fillRect(0, 0, this.canvasSize.w, this.canvasSize.h);
+
+		this.ctx.fillStyle = "white";
+		this.ctx.beginPath();
+		this.ctx.font = "70px monospace";
+		this.ctx.fillText("GAME OVER", 250, 250);
+		this.ctx.closePath();
+
+		this.ctx.fillStyle = "#FF00FF";
+		this.ctx.beginPath();
+		this.ctx.font = "40px monospace";
+		this.ctx.fillText(`Your score is: ${this.score}`, 250, 400);
+		// Cambiar 400 por 370 cuando tengamos botón
+		this.ctx.closePath();
+	},
+
+	isGameOver() {
+		if (this.lives === 0 || this.time === 0) {
+			this.clearAll();
+			this.drawGameOver();
+		}
+	},
+
+	drawScore() {
+		this.ctx.fillStyle = "white";
+		this.ctx.font = "25px monospace";
+		this.ctx.fillText(this.score, this.canvasSize.w / 2, 80);
 	},
 };
