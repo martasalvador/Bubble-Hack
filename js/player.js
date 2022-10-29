@@ -32,7 +32,7 @@ class Player {
 	jump() {
 		if (this.playerPos.y - this.playerSize.h > 20) {
 			this.playerPos.y -= 55;
-			this.playerVel.y -= 8;
+			this.playerVel.y -= 10;
 		} else if ((this.playerPos.y = 20)) {
 			this.playerPos.y += 20;
 		}
