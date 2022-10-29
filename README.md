@@ -1,10 +1,10 @@
 # MÍNIMOS
 
-- Que salte el player
-- Que se pueda subir a una plataforma
-- Que haya colisión
-- Que el player lance burbujas
-- Si burbuja da a Enemy --> Lo encierra en burbuja y sube hacia arriba
+- [ 💁‍♀️ ] Que salte el player
+- [ 💁‍♀️ ] Que se pueda subir a una plataforma
+- [ 💁‍♀️ ] Que haya colisión
+- [ ] Que el player lance burbujas
+- [ ] Si burbuja da a Enemy --> Lo encierra en burbuja y sube hacia arriba
 
 ## INTRO
 
@@ -15,7 +15,9 @@
 
 - [ 💁‍♀️ ] Imagen que ocupe todo el canvas
 - [ 💁‍♀️ ] Rectángulo negro que ocupe el 90% y esté centrado
-- [ ] Puntuación + NºVidas + Tiempo
+- [ ] Puntuación
+- [ 💁‍♀️ ] Tiempo
+- [ 💁‍♀️ ] Vidas
 
 ## PLATFORMS
 
@@ -33,22 +35,23 @@
 - [ 💁‍♀️ ] Que no se salga de la pantalla
 - [ ] Volver a ver colisiones de salto con plataforma
 - [ ] Movimiento fluido
-- [ ] Colisión con Enemies
-- [ ] 3 vidas
+- [ 💁‍♀️ ] Colisión con Enemies
+- [ 💁‍♀️ ] 3 vidas
 - [ ] Si encierra al enemigo con la burbuja --> Suma 100 puntos
 
 ## ENEMIES
 
-- [ ] Dar movimiento dentro de la plataforma
-- [ ] Colisión con player
+- [ 💁‍♀️ ] Dar movimiento dentro de la plataforma
+- [ 💁‍♀️ ] Colisión con player
 - [ ] Colisión con bubble
 - [ ] No saltan (si eso pa'l Bonus)
-- [ ] Si matan 3 veces al player --> Gameover
+- [ 💁‍♀️ ] Si matan 3 veces al player --> Gameover
 
 ##  GAMEOVER
 
-- [ ] Si mueres 3 veces
-- [ ] Aparece la puntuación y botón de restart
+- [ 💁‍♀️ ] Si mueres 3 veces o se acaba el tiempo
+- [ 💁‍♀️ ] Aparece la puntuación
+- [ ] Añadir botón de restart
 
 ## BONUS
 
