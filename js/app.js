@@ -5,20 +5,21 @@ const App = {
 	author: "Marta Salvador y Manuel Atance",
 	description: "Mi primerito juego",
 	ctx: undefined,
-	canvasSize: { w: 900, h: 650 },
+	canvasSize: { w: 900, h: 700 },
 	keys: {
 		UP: "ArrowUp",
 		RIGHT: "ArrowRight",
 		LEFT: "ArrowLeft",
-		JUMP: " ",
+		SPACE: " ",
 	},
 	physics: {
-		gravity: 3,
+		gravity: 2.5,
 	},
 	background: undefined,
 	player: undefined,
 	platforms: [],
 	enemy: [],
+	bubble: [],
 	lives: 3,
 	time: 2000,
 	score: 0,
@@ -76,16 +77,16 @@ const App = {
 	},
 	createPlatforms() {
 		this.platforms.push(
-			new Platform(this.ctx, this.canvasSize, 200, 170),
-			new Platform(this.ctx, this.canvasSize, 200, 320),
-			new Platform(this.ctx, this.canvasSize, 200, 470)
+			new Platform(this.ctx, this.canvasSize, 200, 220),
+			new Platform(this.ctx, this.canvasSize, 200, 370),
+			new Platform(this.ctx, this.canvasSize, 200, 520)
 		);
 	},
 	createEnemy() {
 		this.enemy.push(
-			new Enemy(this.ctx, this.canvasSize, 500, 130),
-			new Enemy(this.ctx, this.canvasSize, 400, 280),
-			new Enemy(this.ctx, this.canvasSize, 300, 430)
+			new Enemy(this.ctx, this.canvasSize, 500, 180),
+			new Enemy(this.ctx, this.canvasSize, 400, 330),
+			new Enemy(this.ctx, this.canvasSize, 300, 480)
 		);
 	},
 
@@ -94,7 +95,7 @@ const App = {
 			if (
 				this.player.playerPos.x <= p.platformPos.x + p.platformSize.w &&
 				this.player.playerPos.x + this.player.playerSize.w >= p.platformPos.x &&
-				this.player.playerPos.y <= p.platformPos.y &&
+				this.player.playerPos.y + 40 /* ¿? */ <= p.platformPos.y &&
 				this.player.playerPos.y + this.player.playerSize.h >= p.platformPos.y
 			) {
 				this.player.playerPos.y = p.platformPos.y - this.player.playerSize.h;
@@ -127,7 +128,7 @@ const App = {
 	drawLives(text) {
 		this.ctx.fillStyle = "white";
 		this.ctx.font = "25px monospace";
-		this.ctx.fillText(text, 60, 80);
+		this.ctx.fillText(text, 40, 60);
 	},
 	calculateTime() {
 		setInterval(() => {
@@ -137,7 +138,7 @@ const App = {
 	drawTime(text) {
 		this.ctx.fillStyle = "white";
 		this.ctx.font = "25px monospace";
-		this.ctx.fillText(text, 810, 80);
+		this.ctx.fillText(text, 800, 60);
 	},
 	drawGameOver() {
 		this.ctx.fillStyle = "black";
@@ -167,6 +168,6 @@ const App = {
 	drawScore() {
 		this.ctx.fillStyle = "white";
 		this.ctx.font = "25px monospace";
-		this.ctx.fillText(this.score, this.canvasSize.w / 2, 80);
+		this.ctx.fillText(this.score, this.canvasSize.w / 2, 60);
 	},
 };

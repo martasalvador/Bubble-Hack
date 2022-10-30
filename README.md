@@ -5,6 +5,7 @@
 - [ 💁‍♀️ ] Que haya colisión
 - [ ] Que el player lance burbujas
 - [ ] Si burbuja da a Enemy --> Lo encierra en burbuja y sube hacia arriba
+- [ ] ¿?
 
 ## INTRO
 
@@ -38,6 +39,14 @@
 - [ 💁‍♀️ ] Colisión con Enemies
 - [ 💁‍♀️ ] 3 vidas
 - [ ] Si encierra al enemigo con la burbuja --> Suma 100 puntos
+
+## BUBBLES
+
+- [ 💁‍♀️ ] Crear burbujas
+- [ 💁‍♀️ ] La burbuja solo avanza 200px y sube hacia arriba
+- [ ] Colisiona con enemigo
+- [ ] Si colisiona con enemigo se convierte enemigo en burbuja y sube hacia arriba
+- [ ] Máximo 15 burbujas en pantalla, si hay más se elimina la primera creada
 
 ## ENEMIES
 

@@ -7,19 +7,20 @@ class Player {
 
 		this.playerSize = { h: 50, w: 50 };
 		this.playerPos = { x: this.canvasSize.w - 800, y: this.canvasSize.h - this.playerSize.h - 100 };
-		this.playerVel = { x: 10, y: 1 };
+		this.playerVel = { x: 10, y: 0 };
 
 		this.floor = this.canvasSize.h - this.playerSize.h - 20;
-		this.setListeners();
 		this.isPressed = {
 			left: false,
 			right: false,
 		};
+		this.bubble = [];
 	}
 	drawPlayer() {
 		this.ctx.fillStyle = "white";
 		this.ctx.fillRect(this.playerPos.x, this.playerPos.y, this.playerSize.w, this.playerSize.h);
 		this.setGravity();
+		this.bubble.forEach((b) => b.drawBubble());
 		/* if (this.isPressed.left) {
 			this.moveLeft();
 		}
@@ -30,11 +31,11 @@ class Player {
 		} */
 	}
 	jump() {
-		if (this.playerPos.y - this.playerSize.h > 20) {
-			this.playerPos.y -= 55;
-			this.playerVel.y -= 10;
-		} else if ((this.playerPos.y = 20)) {
+		if (this.playerPos.y <= 20) {
 			this.playerPos.y += 20;
+			this.playerVel.y = 0;
+		} else if (this.playerPos.y - this.playerSize.h > 20) {
+			this.playerVel.y -= 27;
 		}
 	}
 	moveRight() {
@@ -56,6 +57,12 @@ class Player {
 		} */
 	}
 
+	shoot() {
+		this.bubble.push(
+			new Bubble(this.ctx, this.canvasSize, this.playerPos.x, this.playerPos.y, this.playerSize.w, this.playerSize.h)
+		);
+	}
+
 	setListeners() {
 		document.addEventListener("keydown", (e) => {
 			switch (e.key) {
@@ -67,6 +74,9 @@ class Player {
 					break;
 				case this.keys.UP:
 					this.jump();
+					break;
+				case this.keys.SPACE:
+					this.shoot();
 					break;
 			}
 		});
@@ -100,12 +110,13 @@ class Player {
 		}); */
 	}
 	setGravity() {
-		if (this.playerPos.y + this.playerSize.h < this.floor) {
-			this.playerPos.y += this.playerVel.y;
+		this.playerPos.y += this.playerVel.y;
+		if (this.playerPos.y + this.playerVel.y < this.floor) {
 			this.playerVel.y += this.physics.gravity;
+			/* this.playerPos.y = this.playerPos.y + this.playerSize.h; */
 		} else {
 			this.playerPos.y = this.floor;
-			this.playerVel.y = 1;
+			this.playerVel.y = 0;
 		}
 	}
 }
