@@ -58,7 +58,6 @@
 - [ 💁‍♀️ ] Colisión con player
 - [ 💁‍♀️ ] Colisión con bubble
 - [ 💁‍♀️ ] Si colisiona con Bubble, se filtra del array
-
 - [ 💁‍♀️ ] Si matan 3 veces al player --> Gameover
 
 ##  GAMEOVER
@@ -72,6 +71,7 @@
 - [ ] Teclas en pantalla se pulsan cuando las pulsas en el teclado
 - [ ] Cambiar foto del personaja
 - [ ] Si muere --> Suelta fruta
+- [ ] Nuevos niveles
 - [ ] Salta sobre las burbujas
 - [ ] ¿Multiplayer? xd
 - [ ] ¿Enemigos saltan? (si eso pa'l Bonus)

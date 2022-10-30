@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
 * {
 	padding: 0;
 	margin: 0;
@@ -8,9 +10,61 @@ body {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+	background-image: url("../images/background.jpeg");
+	background-size: 45%;
+	color: white;
+	font-family: "VT323", monospace;
 }
 
-body > * {
-	margin-left: 300px;
-	/* color: #1f001b; */
+div {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	gap: 80px;
+}
+
+h1 {
+	font-size: 90px;
+	letter-spacing: 5px;
+}
+
+h3 {
+	font-size: 45px;
+	margin-bottom: 100px;
+	letter-spacing: 2px;
+}
+
+button {
+	width: max-content;
+	margin-inline: auto;
+	padding: 20px 80px;
+	font-size: 20px;
+	border: 5px solid #ff00ff;
+	border-radius: 2px;
+	background-color: #1f001b;
+	color: #ff00ff;
+	font-weight: bold;
+	letter-spacing: 2px;
+	box-shadow: 0 0 15px peachpuff;
+	animation: btn 0.5s ease-in;
+}
+
+button:hover {
+	color: #1f001b;
+	background-color: #ff00ff;
+	transition: 0.5s ease-in-out;
+}
+
+.hidden {
+	display: none;
+}
+
+@keyframes btn {
+	0% {
+		scale: 0;
+	}
+	100% {
+		scale: 1;
+	}
 }
