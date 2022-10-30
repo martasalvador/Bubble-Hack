@@ -21,7 +21,7 @@ class Bubble {
 	moveBubble() {
 		if (this.bubblePos.x === this.maxDistance) {
 			this.bubbleVel.x = 0;
-			if (this.bubblePos.y > this.canvasSize.h - 550) {
+			if (this.bubblePos.y > this.canvasSize.h - 600) {
 				this.bubblePos.y -= this.bubbleVel.y;
 			} else {
 				this.bubblePos.y = 100;

@@ -10,9 +10,9 @@ class Player {
 		this.playerVel = { x: 0, y: 10 };
 
 		this.floor = this.canvasSize.h - this.playerSize.h - 20;
-		this.isPressed = {
+		this.playerDirection = {
 			left: false,
-			right: false,
+			right: true,
 		};
 		this.bubble = [];
 	}
@@ -23,22 +23,33 @@ class Player {
 	}
 
 	shoot() {
-		this.bubble.push(
-			new Bubble(this.ctx, this.canvasSize, this.playerPos.x, this.playerPos.y, this.playerSize.w, this.playerSize.h)
-		);
+		if (this.bubble.length < 12) {
+			this.bubble.push(
+				new Bubble(this.ctx, this.canvasSize, this.playerPos.x, this.playerPos.y, this.playerSize.w, this.playerSize.h)
+			);
+		} else {
+			this.bubble.shift();
+		}
 	}
 
 	setListeners() {
 		document.onkeydown = (event) => {
 			switch (event.key) {
 				case this.keys.LEFT:
-					this.playerVel.x -= 5;
+					// this.playerVel.x -= 3;
+					if (this.playerVel.x > -15) {
+						this.playerVel.x -= 3;
+					}
 					break;
 				case this.keys.RIGHT:
-					this.playerVel.x += 5;
+					if (this.playerVel.x < 15) {
+						this.playerVel.x += 3;
+					}
 					break;
 				case this.keys.UP:
-					this.playerVel.y -= 28;
+					if (this.playerVel.y > -30) {
+						this.playerVel.y -= 28;
+					}
 					break;
 				case this.keys.SPACE:
 					this.shoot();
@@ -49,12 +60,21 @@ class Player {
 			switch (event.key) {
 				case this.keys.LEFT:
 					this.playerVel.x = 0;
+					/* do {
+						this.playerVel.x += 1;
+					} while (this.playerVel.x < 0); */
 					break;
 				case this.keys.RIGHT:
-					this.playerVel.x = 0;
+					while (this.playerVel.x > 0) {
+						this.playerVel.x -= 1;
+					}
+					/* do {
+						this.playerVel.x -= 1;
+					} while (this.playerVel.x > 0); */
 					break;
 				case this.keys.UP:
 					this.playerVel.y -= 0;
+
 					break;
 				case this.keys.SPACE:
 					break;
@@ -63,15 +83,24 @@ class Player {
 	}
 
 	movePlayer() {
-		this.playerPos.y += this.playerVel.y;
-		this.playerPos.x += this.playerVel.x;
-
-		if (this.playerVel.x > 5) {
-			this.playerVel.x = 5;
-		} else if (this.playerVel.x < -5) {
-			this.playerVel.x = -5;
+		// Check if player can go above the ceiling
+		if (this.playerPos.y < 0) {
+			this.playerPos.y += 2;
+			this.playerVel.y = 0;
 		}
+		this.playerPos.y += this.playerVel.y;
 
+		if (this.playerPos.x + this.playerSize.w > this.canvasSize.w - 20) {
+			// Check if player can go further than canvas size
+			this.playerPos.x -= 3;
+			this.playerVel.x = 0;
+		} else if (this.playerPos.x < 20) {
+			// Check if player can go further than x=0
+			this.playerPos.x += 3;
+			this.playerVel.x = 0;
+		} else this.playerPos.x += this.playerVel.x;
+
+		// Gravity
 		if (this.playerPos.y + this.playerSize.h + this.playerVel.y <= this.canvasSize.h - 20 - this.physics.gravity) {
 			this.playerVel.y += this.physics.gravity;
 		} else {
