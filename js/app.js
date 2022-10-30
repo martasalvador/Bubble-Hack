@@ -19,7 +19,6 @@ const App = {
 	player: undefined,
 	platforms: [],
 	enemy: [],
-	bubble: [],
 	lives: 3,
 	time: 2000,
 	score: 0,
@@ -45,32 +44,35 @@ const App = {
 	},
 	start() {
 		setInterval(() => {
+			this.calculateScore();
 			this.clearAll();
 			this.drawAll();
-			this.detectCollision();
-			this.calculateLives();
-
-			this.drawTime(`${this.time}`);
-			this.drawLives(`${this.lives} ❤︎`);
-			this.drawScore();
+			this.playerPlatformCollision();
+			this.bubbleEnemyCollision();
 
 			this.isGameOver();
 		}, 60);
 	},
 	clearAll() {
 		this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h);
+		this.enemy = this.enemy.filter((e) => e.enemyPos.x < this.canvasSize.w);
 	},
 	drawAll() {
 		this.background = new Background(this.ctx, this.canvasSize);
 		this.background.createBackground();
 
-		this.platforms.forEach((p) => {
-			p.drawPlatform();
-		});
+		this.calculateLives();
+
+		this.drawTime(`${this.time}`);
+		this.drawLives(`${this.lives} ❤︎`);
+		this.drawScore();
+
+		this.platforms.forEach((p) => p.drawPlatform());
 
 		this.enemy.forEach((e) => e.drawEnemy());
 
 		this.player.drawPlayer();
+		this.player.movePlayer();
 	},
 	createPlayer() {
 		this.player = new Player(this.ctx, this.canvasSize, this.keys, this.physics);
@@ -90,7 +92,7 @@ const App = {
 		);
 	},
 
-	detectCollision() {
+	playerPlatformCollision() {
 		this.platforms.forEach((p) => {
 			if (
 				this.player.playerPos.x <= p.platformPos.x + p.platformSize.w &&
@@ -107,6 +109,23 @@ const App = {
 			}
 		});
 	},
+
+	bubbleEnemyCollision() {
+		this.player.bubble.forEach((b) => {
+			this.enemy.forEach((e) => {
+				if (
+					e.enemyPos.x <= b.bubblePos.x + b.bubbleRadius &&
+					e.enemyPos.x + e.enemySize.w >= b.bubblePos.x &&
+					e.enemyPos.y <= b.bubblePos.y &&
+					e.enemyPos.y + e.enemySize.h >= b.bubblePos.y
+				) {
+					e.enemyPos.x = 10000;
+					b.bubbleColor = "peachpuff";
+				}
+			});
+		});
+	},
+
 	calculateLives() {
 		this.enemy.forEach((e) => {
 			if (
@@ -169,5 +188,13 @@ const App = {
 		this.ctx.fillStyle = "white";
 		this.ctx.font = "25px monospace";
 		this.ctx.fillText(this.score, this.canvasSize.w / 2, 60);
+	},
+
+	calculateScore() {
+		this.enemy.forEach((e) => {
+			if (e.enemyPos.x === 10000) {
+				this.score += 100;
+			}
+		});
 	},
 };

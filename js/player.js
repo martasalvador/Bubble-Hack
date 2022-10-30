@@ -7,7 +7,7 @@ class Player {
 
 		this.playerSize = { h: 50, w: 50 };
 		this.playerPos = { x: this.canvasSize.w - 800, y: this.canvasSize.h - this.playerSize.h - 100 };
-		this.playerVel = { x: 10, y: 0 };
+		this.playerVel = { x: 0, y: 10 };
 
 		this.floor = this.canvasSize.h - this.playerSize.h - 20;
 		this.isPressed = {
@@ -19,7 +19,7 @@ class Player {
 	drawPlayer() {
 		this.ctx.fillStyle = "white";
 		this.ctx.fillRect(this.playerPos.x, this.playerPos.y, this.playerSize.w, this.playerSize.h);
-		this.setGravity();
+		// this.setGravity();
 		this.bubble.forEach((b) => b.drawBubble());
 		/* if (this.isPressed.left) {
 			this.moveLeft();
@@ -64,7 +64,7 @@ class Player {
 	}
 
 	setListeners() {
-		document.addEventListener("keydown", (e) => {
+		/* document.addEventListener("keydown", (e) => {
 			switch (e.key) {
 				case this.keys.RIGHT:
 					this.moveRight();
@@ -79,7 +79,23 @@ class Player {
 					this.shoot();
 					break;
 			}
-		});
+		}); */
+		document.onkeydown = (event) => {
+			switch (event.key) {
+				case this.keys.LEFT:
+					this.playerVel.x -= 1; //(10)
+					break;
+				case this.keys.RIGHT:
+					this.playerVel.x += 1;
+					break;
+				case this.keys.UP:
+					this.playerVel.y -= 10; //CAMARA LENTA
+					break;
+				case this.keys.SPACE:
+					this.shoot();
+					break;
+			}
+		};
 		/* document.addEventListener("keydown", (e) => {
 			switch (e.key) {
 				case this.keys.RIGHT:
@@ -109,13 +125,29 @@ class Player {
 			}
 		}); */
 	}
-	setGravity() {
+	/* setGravity() {
 		this.playerPos.y += this.playerVel.y;
 		if (this.playerPos.y + this.playerVel.y < this.floor) {
 			this.playerVel.y += this.physics.gravity;
-			/* this.playerPos.y = this.playerPos.y + this.playerSize.h; */
+			//this.playerPos.y = this.playerPos.y + this.playerSize.h
 		} else {
 			this.playerPos.y = this.floor;
+			this.playerVel.y = 0;
+		}
+	} */
+	movePlayer() {
+		this.playerPos.y += this.playerVel.y;
+		this.playerPos.x += this.playerVel.x;
+
+		if (this.playerVel.x > 5) {
+			this.playerVel.x = 5;
+		} else if (this.playerVel.x < -5) {
+			this.playerVel.x = -5;
+		}
+
+		if (this.playerPos.y + this.playerSize.h + this.playerVel.y <= this.canvasSize.h) {
+			this.playerVel.y += this.physics.gravity;
+		} else {
 			this.playerVel.y = 0;
 		}
 	}
