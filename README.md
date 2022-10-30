@@ -48,8 +48,9 @@
 - [ 💁‍♀️ ] Colisiona con enemigo
 - [ 💁‍♀️ ] Si colisiona con enemigo se convierte enemigo en burbuja y sube hacia arriba
 - [ 💁‍♀️ ] Máximo 12 burbujas en pantalla, si hay más se elimina la primera creada
+- [ ] Colisionan con plataformas
 - [ ] Las burbujas no pueden salir del canvas
-- [ ] Crear burbujas en ambos sentidos
+- [ 💁‍♀️ ] Crear burbujas en ambos sentidos
 
 ## ENEMIES
 
@@ -73,4 +74,4 @@
 - [ ] Si muere --> Suelta fruta
 - [ ] Salta sobre las burbujas
 - [ ] ¿Multiplayer? xd
-- [ ] Saltan? (si eso pa'l Bonus)
+- [ ] ¿Enemigos saltan? (si eso pa'l Bonus)
