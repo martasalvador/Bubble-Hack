@@ -5,6 +5,5 @@ const startBtn = document.querySelector("button");
 startBtn.onclick = () => {
 	logo.classList.add("hidden");
 	game.classList.remove("hidden");
+	App.init();
 };
-
-onload = () => App.init();

@@ -11,7 +11,7 @@ class Player {
 
 		this.floor = this.canvasSize.h - this.playerSize.h - 20;
 		this.bubble = [];
-		this.isLookingRight = true;
+		this.isFacingRight = true;
 	}
 	drawPlayer() {
 		this.bubble.forEach((b) => b.drawBubble());
@@ -30,7 +30,7 @@ class Player {
 					this.playerPos.y,
 					this.playerSize.w,
 					this.playerSize.h,
-					this.isLookingRight
+					this.isFacingRight
 				)
 			);
 		} else {
@@ -42,17 +42,16 @@ class Player {
 		document.onkeydown = (event) => {
 			switch (event.key) {
 				case this.keys.LEFT:
-					// this.playerVel.x -= 3;
-					if (this.playerVel.x > -15) {
-						this.playerVel.x -= 3;
+					if (this.playerVel.x > -12) {
+						this.playerVel.x -= 4;
 					}
-					this.isLookingRight = false;
+					this.isFacingRight = false;
 					break;
 				case this.keys.RIGHT:
-					if (this.playerVel.x < 15) {
-						this.playerVel.x += 3;
+					if (this.playerVel.x < 12) {
+						this.playerVel.x += 4;
 					}
-					this.isLookingRight = true;
+					this.isFacingRight = true;
 					break;
 				case this.keys.UP:
 					if (this.playerVel.y > -30) {
@@ -68,21 +67,17 @@ class Player {
 			switch (event.key) {
 				case this.keys.LEFT:
 					this.playerVel.x = 0;
-					/* do {
+					while (this.playerVel.x < 0) {
 						this.playerVel.x += 1;
-					} while (this.playerVel.x < 0); */
+					}
 					break;
 				case this.keys.RIGHT:
 					while (this.playerVel.x > 0) {
 						this.playerVel.x -= 1;
 					}
-					/* do {
-						this.playerVel.x -= 1;
-					} while (this.playerVel.x > 0); */
 					break;
 				case this.keys.UP:
-					this.playerVel.y -= 0;
-
+					// this.playerVel.y -= 0; ¿?
 					break;
 				case this.keys.SPACE:
 					break;
@@ -106,7 +101,8 @@ class Player {
 			// Check if player can go further than x=0
 			this.playerPos.x += 2;
 			this.playerVel.x = 0;
-		} else this.playerPos.x += this.playerVel.x;
+		}
+		this.playerPos.x += this.playerVel.x;
 
 		// Gravity
 		if (this.playerPos.y + this.playerSize.h + this.playerVel.y <= this.canvasSize.h - 20 - this.physics.gravity) {

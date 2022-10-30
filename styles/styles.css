@@ -22,6 +22,11 @@ div {
 	text-align: center;
 	justify-content: center;
 	gap: 80px;
+	transition: 0.5s ease-out;
+}
+
+canvas {
+	animation: game 1s ease-in;
 }
 
 h1 {
@@ -46,8 +51,8 @@ button {
 	color: #ff00ff;
 	font-weight: bold;
 	letter-spacing: 2px;
-	box-shadow: 0 0 15px peachpuff;
-	animation: btn 0.5s ease-in;
+	box-shadow: 0 0 25px peachpuff;
+	animation: btn 0.5s ease-in, glow 1s linear alternate infinite;
 }
 
 button:hover {
@@ -60,11 +65,29 @@ button:hover {
 	display: none;
 }
 
+@keyframes glow {
+	0% {
+		box-shadow: 0 0 0 peachpuff;
+	}
+	100% {
+		box-shadow: 0 0 25px peachpuff;
+	}
+}
+
 @keyframes btn {
 	0% {
 		scale: 0;
 	}
 	100% {
 		scale: 1;
+	}
+}
+
+@keyframes game {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }

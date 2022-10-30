@@ -20,8 +20,8 @@ const App = {
 	platforms: [],
 	enemy: [],
 	lives: 3,
-	time: 2000,
-	score: 0,
+	time: 60,
+	score: 1000,
 
 	init() {
 		this.setContext();
@@ -102,7 +102,6 @@ const App = {
 			) {
 				this.player.playerPos.y = p.platformPos.y - this.player.playerSize.h;
 				if (this.player.playerVel.y > 0) {
-					// Esto es lo que he cambiado
 					this.player.playerVel.y = 0;
 				}
 			} else {
@@ -147,7 +146,7 @@ const App = {
 	drawLives(text) {
 		this.ctx.fillStyle = "white";
 		this.ctx.font = "25px monospace";
-		this.ctx.fillText(text, 40, 60);
+		this.ctx.fillText(text, 50, 60);
 	},
 	calculateTime() {
 		setInterval(() => {
@@ -157,7 +156,7 @@ const App = {
 	drawTime(text) {
 		this.ctx.fillStyle = "white";
 		this.ctx.font = "25px monospace";
-		this.ctx.fillText(text, 800, 60);
+		this.ctx.fillText(text, 820, 60);
 	},
 	drawGameOver() {
 		this.ctx.fillStyle = "black";
@@ -172,7 +171,7 @@ const App = {
 		this.ctx.fillStyle = "#FF00FF";
 		this.ctx.beginPath();
 		this.ctx.font = "40px monospace";
-		this.ctx.fillText(`Your score is: ${this.score}`, 250, 400);
+		this.ctx.fillText(`Your score is: ${this.score}`, 220, 400);
 		// Cambiar 400 por 370 cuando tengamos botón
 		this.ctx.closePath();
 	},
@@ -187,7 +186,7 @@ const App = {
 	drawScore() {
 		this.ctx.fillStyle = "white";
 		this.ctx.font = "25px monospace";
-		this.ctx.fillText(this.score, this.canvasSize.w / 2, 60);
+		this.ctx.fillText(this.score, this.canvasSize.w / 2 - 30, 60);
 	},
 
 	calculateScore() {
