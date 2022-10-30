@@ -3,8 +3,8 @@
 - [ 💁‍♀️ ] Que salte el player
 - [ 💁‍♀️ ] Que se pueda subir a una plataforma
 - [ 💁‍♀️ ] Que haya colisión
-- [ ] Que el player lance burbujas
-- [ ] Si burbuja da a Enemy --> Lo encierra en burbuja y sube hacia arriba
+- [ 💁‍♀️ ] Que el player lance burbujas
+- [ 💁‍♀️ ] Si burbuja da a Enemy --> Lo encierra en burbuja y sube hacia arriba
 - [ ] ¿?
 
 ## INTRO
@@ -44,7 +44,7 @@
 
 - [ 💁‍♀️ ] Crear burbujas
 - [ 💁‍♀️ ] La burbuja solo avanza 200px y sube hacia arriba
-- [ ] Colisiona con enemigo
+- [ 💁‍♀️ ] Colisiona con enemigo
 - [ ] Si colisiona con enemigo se convierte enemigo en burbuja y sube hacia arriba
 - [ ] Máximo 15 burbujas en pantalla, si hay más se elimina la primera creada
 
@@ -52,7 +52,8 @@
 
 - [ 💁‍♀️ ] Dar movimiento dentro de la plataforma
 - [ 💁‍♀️ ] Colisión con player
-- [ ] Colisión con bubble
+- [ 💁‍♀️ ] Colisión con bubble
+- [ 💁‍♀️ ] Si colisiona con Bubble, se filtra del array
 - [ ] No saltan (si eso pa'l Bonus)
 - [ 💁‍♀️ ] Si matan 3 veces al player --> Gameover
 

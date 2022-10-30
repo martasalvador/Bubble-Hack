@@ -6,11 +6,12 @@ class Bubble {
 		this.bubbleVel = { x: 10, y: 10 };
 		this.bubbleRadius = 15;
 		this.maxDistance = this.bubblePos.x + 250;
+		this.bubbleColor = "lightblue";
 	}
 
 	drawBubble() {
 		this.ctx.beginPath();
-		this.ctx.fillStyle = "lightblue";
+		this.ctx.fillStyle = this.bubbleColor;
 		this.ctx.arc(this.bubblePos.x, this.bubblePos.y, this.bubbleRadius, 0, Math.PI * 2);
 		this.ctx.fill();
 		this.ctx.closePath();
