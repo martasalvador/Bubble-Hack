@@ -73,7 +73,7 @@
 
 - [ 💁‍♀️ ] Aparece fruta
 - [ 💁‍♀️ ] Si muere --> Suelta fruta
-- [ ] Suma puntos al coger fruta
+- [ 💁‍♀️ ] Suma puntos al coger fruta
 - [ ] Colisiona con las plataformas
 
 ##  GAMEOVER
@@ -87,8 +87,7 @@
 
 - [ ] Al reaparecer tarda un poco en dejarte mover
 - [ ] Teclas en pantalla se pulsan cuando las pulsas en el teclado
-- [ ] Cambiar foto del personaja
-
+- [ ] Cambiar foto del personaje
 - [ ] Nuevos niveles
 - [ ] Salta sobre las burbujas
 - [ ] ¿Multiplayer? xd

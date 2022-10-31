@@ -13,11 +13,6 @@ class Player {
 		this.bubble = [];
 		this.bubbledEnemy = [];
 		this.isFacingRight = true;
-		this.isPressed = {
-			right: false,
-			left: false,
-			up: false,
-		};
 	}
 	drawPlayer() {
 		this.bubble.forEach((b) => b.drawBubble());
