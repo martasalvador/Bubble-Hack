@@ -63,7 +63,7 @@ class Player {
 					break;
 				case this.keys.UP:
 					if (this.playerVel.y > -35) {
-						this.playerVel.y -= 28;
+						this.playerVel.y -= 25;
 					}
 					break;
 				case this.keys.SPACE:

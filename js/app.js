@@ -13,7 +13,7 @@ const App = {
 		SPACE: " ",
 	},
 	physics: {
-		gravity: 2.5,
+		gravity: 2,
 	},
 	background: undefined,
 	player: undefined,
