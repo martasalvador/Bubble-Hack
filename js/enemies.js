@@ -15,7 +15,7 @@ class Enemy {
 		if (this.enemyPos.x >= 700 - this.enemySize.w) {
 			this.enemyVel.x *= -1;
 		}
-		if (this.enemyPos.x < 200) {
+		if (this.enemyPos.x <= 200) {
 			this.enemyVel.x *= -1;
 		}
 		this.enemyPos.x += this.enemyVel.x;

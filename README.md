@@ -42,9 +42,8 @@
 - [ 💁‍♀️ ] Que no se salga de la pantalla
 - [ 💁‍♀️ ] Volver a ver colisiones de salto con plataforma
 - [ 💁‍♀️ ] Movimiento fluido
-- [ ] Impedir que el jugador pueda saltar dos veces seguidas sin colisionar
-- [ ] Gravedad fluida al tocar el suelo
-- Para movimiento fluido hay que asociar el eventlistener a un booleano para que funcione correctamente con el intervalo. Hay que usar keyup y keydown
+- [ ] Impedir que el jugador pueda saltar dos veces seguidas
+- [ 💁‍♀️ ] Gravedad fluida al tocar el suelo
 - [ 💁‍♀️ ] Colisión con Enemies
 - [ 💁‍♀️ ] 3 vidas
 - [ 💁‍♀️ ] Si encierra al enemigo con la burbuja --> Suma 100 puntos
@@ -60,7 +59,7 @@
 - [ 💁‍♀️ ] Las burbujas no pueden salir del canvas
 - [ 💁‍♀️ ] Crear burbujas en ambos sentidos
 - [ 💁‍♀️ ] Burbujas suben por la izquierda
-- [ 💁‍♀️ ] Solo lanza una burbuja cada 1s <!-- REVISAR PARA EL SALTO -->
+- [ 💁‍♀️ ] Solo lanza una burbuja cada 1s
 
 ## ENEMIES
 
@@ -69,7 +68,13 @@
 - [ 💁‍♀️ ] Colisión con bubble
 - [ 💁‍♀️ ] Si colisiona con Bubble, se filtra del array
 - [ 💁‍♀️ ] Si matan 3 veces al player --> Gameover
-- [ ] ¿A veces un enemigo va más rápido que otro?<!-- REVISAR -->
+
+## FRUITS ( BONUS )
+
+- [ 💁‍♀️ ] Aparece fruta
+- [ 💁‍♀️ ] Si muere --> Suelta fruta
+- [ 💁‍♀️ ] Suma puntos al coger fruta
+- [ ] Colisiona con las plataformas
 
 ##  GAMEOVER
 
@@ -82,8 +87,7 @@
 
 - [ ] Al reaparecer tarda un poco en dejarte mover
 - [ ] Teclas en pantalla se pulsan cuando las pulsas en el teclado
-- [ ] Cambiar foto del personaja
-- [ ] Si muere --> Suelta fruta
+- [ ] Cambiar foto del personaje
 - [ ] Nuevos niveles
 - [ ] Salta sobre las burbujas
 - [ ] ¿Multiplayer? xd
@@ -94,4 +98,9 @@
 - [ ] Clean code
 - [ ] Revisar funcion checkbubbleplatformcollision
 - [ ] Burbujas cada vez que lanzas una se aceleran en la colision con plataforma
-- [ ] Personaje acelera hasta el infinito
+- [ 💁‍♀️ ] Personaje acelera hasta el infinito
+- [ 💁‍♀️ ] Enemigos velocidades distintas
+
+### ANOTACIONES
+
+- Para movimiento fluido hay que asociar el eventlistener a un booleano para que funcione correctamente con el intervalo. Hay que usar keyup y keydown

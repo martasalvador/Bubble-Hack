@@ -14,11 +14,13 @@ const App = {
 	},
 	physics: {
 		gravity: 2,
+		fruitsGravity: 0.5,
 	},
 	background: undefined,
 	player: undefined,
 	platforms: [],
 	enemy: [],
+	fruit: [],
 	FPS: 60,
 	lives: 3,
 	time: 2000,
@@ -52,6 +54,7 @@ const App = {
 			this.bubbleEnemyCollision();
 			this.checkBubblePlatformCollision();
 			this.bubblePlatformCollision();
+			this.playerFruitCollision();
 
 			this.isGameOver();
 		}, 1000 / this.FPS);
@@ -59,6 +62,7 @@ const App = {
 	clearAll() {
 		this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h);
 		this.enemy = this.enemy.filter((e) => e.enemyPos.x < this.canvasSize.w);
+		this.fruit = this.fruit.filter((f) => f.fruitPos.x < this.canvasSize.w);
 	},
 	drawAll() {
 		this.background = new Background(this.ctx, this.canvasSize);
@@ -73,6 +77,9 @@ const App = {
 		this.platforms.forEach((p) => p.drawPlatform());
 
 		this.enemy.forEach((e) => e.drawEnemy());
+		this.fruit.forEach((f) => {
+			f.drawFruit();
+		});
 
 		this.player.drawPlayer();
 	},
@@ -88,9 +95,9 @@ const App = {
 	},
 	createEnemy() {
 		this.enemy.push(
-			new Enemy(this.ctx, this.canvasSize, 500, 180),
-			new Enemy(this.ctx, this.canvasSize, 400, 330),
-			new Enemy(this.ctx, this.canvasSize, 300, 480)
+			new Enemy(this.ctx, this.canvasSize, 525, 180),
+			new Enemy(this.ctx, this.canvasSize, 450, 330),
+			new Enemy(this.ctx, this.canvasSize, 375, 480)
 		);
 	},
 
@@ -122,8 +129,23 @@ const App = {
 				) {
 					e.enemyPos.x = 10000;
 					b.bubbleColor = "peachpuff";
+					this.fruit.push(new Fruit(this.ctx, this.canvasSize, this.physics));
 				}
 			});
+		});
+	},
+
+	playerFruitCollision() {
+		this.fruit.forEach((f) => {
+			if (
+				this.player.playerPos.x <= f.fruitPos.x + f.fruitSize.w &&
+				this.player.playerPos.x + this.player.playerSize.w >= f.fruitPos.x &&
+				this.player.playerPos.y <= f.fruitPos.y &&
+				this.player.playerPos.y + this.player.playerSize.h >= f.fruitPos.y
+			) {
+				f.fruitPos.x = 10000;
+				this.score += 100;
+			}
 		});
 	},
 
