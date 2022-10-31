@@ -50,7 +50,7 @@ const App = {
 			this.drawAll();
 			this.playerPlatformCollision();
 			this.bubbleEnemyCollision();
-			this.checkCol2();
+			this.checkBubblePlatformCollision();
 			this.bubblePlatformCollision();
 
 			this.isGameOver();
@@ -148,25 +148,28 @@ const App = {
 						b.bubbleVel.y += 2;
 						b.bubbleVel.x = 0;
 					}
-					/* //// Arriba
-					if (p.platformPos.y < b.bubblePos.y + b.bubbleRadius) {
-						b.bubbleVel.y += 2;
-					} */
 					//// Abajo
-					if (p.platformPos.y + p.platformSize.h > b.bubblePos.y - b.bubbleRadius) {
-						b.bubbleVel.y = 0;
-						b.bubbleVel.x += 1.4;
-						b.bubblePos.x += b.bubbleVel.x;
+					////// Check if facing right
+					if (b.isBubbleFacingRight === true) {
+						if (p.platformPos.y + p.platformSize.h > b.bubblePos.y - b.bubbleRadius) {
+							b.bubbleVel.y = 0;
+							b.bubbleVel.x += 1.4;
+							b.bubblePos.x += b.bubbleVel.x;
+						}
+					} else if (b.isBubbleFacingRight === false) {
+						////// Check if facing left
+						if (p.platformPos.y + p.platformSize.h > b.bubblePos.y - b.bubbleRadius) {
+							b.bubbleVel.y = 0;
+							b.bubbleVel.x -= 1.4;
+							b.bubblePos.x += b.bubbleVel.x;
+						}
 					}
-					console.log(b.bubbleVel.x);
-
-					//// Si al colisionar y checkear el lado
 				}
 			});
 		});
 	},
 
-	checkCol2() {
+	checkBubblePlatformCollision() {
 		this.player.bubble.forEach((b) => {
 			if (!this.bubblePlatformCollision()) {
 				b.bubbleVel.y += 0.02;

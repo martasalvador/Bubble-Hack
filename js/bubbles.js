@@ -1,5 +1,5 @@
 class Bubble {
-	constructor(ctx, canvasSize, playerPosX, playerPosY, playerWidth, playerHeight, isLookingRight) {
+	constructor(ctx, canvasSize, playerPosX, playerPosY, playerWidth, playerHeight, isFacingRight) {
 		this.ctx = ctx;
 		this.canvasSize = canvasSize;
 		this.bubblePos = { x: playerPosX + playerWidth / 2, y: playerPosY + playerHeight / 2 };
@@ -8,7 +8,8 @@ class Bubble {
 		this.maxDistanceRight = this.bubblePos.x + 250;
 		this.maxDistanceLeft = this.bubblePos.x - 250;
 		this.bubbleColor = "lightblue";
-		this.isLookingRight = isLookingRight;
+		this.isFacingRight = isFacingRight;
+		this.isBubbleFacingRight = true;
 	}
 
 	drawBubble() {
@@ -22,7 +23,8 @@ class Bubble {
 	}
 	moveBubble() {
 		// Dispara hacia la derecha
-		if (this.isLookingRight) {
+		if (this.isFacingRight) {
+			this.isBubbleFacingRight = true;
 			if (this.maxDistanceRight > this.canvasSize.w - 30) {
 				if (this.bubblePos.x + this.bubbleRadius < this.canvasSize.w - 30) {
 					this.bubblePos.x += this.bubbleVel.x;
@@ -49,6 +51,7 @@ class Bubble {
 		}
 		// Dispara hacia la izquierda
 		else {
+			this.isBubbleFacingRight = false;
 			if (this.maxDistanceLeft < 30) {
 				if (this.bubblePos.x - this.bubbleRadius > 30) {
 					this.bubblePos.x -= this.bubbleVel.x;

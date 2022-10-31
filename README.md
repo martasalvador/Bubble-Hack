@@ -1,3 +1,5 @@
+# LIVE VERSION HERE https://iron-bubble.netlify.app/
+
 # MÍNIMOS
 
 - [ 💁‍♀️ ] Que salte el player
@@ -6,6 +8,11 @@
 - [ 💁‍♀️ ] Que el player lance burbujas
 - [ 💁‍♀️ ] Si burbuja da a Enemy --> Lo encierra en burbuja y sube hacia arriba
 - [ ] ¿?
+
+# TO-DO
+
+- [ ] Solo explotan burbujas azules
+- [ ] Efecto flotando al llegar arriba
 
 ## INTRO
 
@@ -49,10 +56,10 @@
 - [ 💁‍♀️ ] Colisiona con enemigo
 - [ 💁‍♀️ ] Si colisiona con enemigo se convierte enemigo en burbuja y sube hacia arriba
 - [ 💁‍♀️ ] Máximo 12 burbujas en pantalla, si hay más se elimina la primera creada
-- [ ] Colisionan con plataformas
-- [ ] Efecto flotando al llegar arriba
+- [ 💁‍♀️ ] Colisionan con plataformas <!-- REVISAR VELOCIDAD - BUGS -->
 - [ 💁‍♀️ ] Las burbujas no pueden salir del canvas
 - [ 💁‍♀️ ] Crear burbujas en ambos sentidos
+- [ 💁‍♀️ ] Burbujas suben por la izquierda
 - [ 💁‍♀️ ] Solo lanza una burbuja cada 1s <!-- REVISAR PARA EL SALTO -->
 
 ## ENEMIES
@@ -81,3 +88,10 @@
 - [ ] Salta sobre las burbujas
 - [ ] ¿Multiplayer? xd
 - [ ] ¿Enemigos saltan? (si eso pa'l Bonus)
+
+## BUGS
+
+- [ ] Clean code
+- [ ] Revisar funcion checkbubbleplatformcollision
+- [ ] Burbujas cada vez que lanzas una se aceleran en la colision con plataforma
+- [ ] Personaje acelera hasta el infinito

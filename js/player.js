@@ -11,6 +11,7 @@ class Player {
 
 		this.floor = this.canvasSize.h - this.playerSize.h - 20;
 		this.bubble = [];
+		this.bubbledEnemy = [];
 		this.isFacingRight = true;
 		this.isPressed = {
 			right: false,
@@ -27,19 +28,18 @@ class Player {
 	}
 
 	shoot() {
-		if (this.bubble.length < 12) {
-			this.bubble.push(
-				new Bubble(
-					this.ctx,
-					this.canvasSize,
-					this.playerPos.x,
-					this.playerPos.y,
-					this.playerSize.w,
-					this.playerSize.h,
-					this.isFacingRight
-				)
-			);
-		} else {
+		this.bubble.push(
+			new Bubble(
+				this.ctx,
+				this.canvasSize,
+				this.playerPos.x,
+				this.playerPos.y,
+				this.playerSize.w,
+				this.playerSize.h,
+				this.isFacingRight
+			)
+		);
+		if (this.bubble.length > 5) {
 			this.bubble.shift();
 		}
 	}
@@ -48,15 +48,15 @@ class Player {
 		document.onkeydown = (event) => {
 			switch (event.key) {
 				case this.keys.LEFT:
-					this.playerVel.x -= 2;
-					while (this.playerVel.x >= -3) {
+					this.playerVel.x -= 1;
+					while (this.playerVel.x >= -2) {
 						this.playerVel.x -= 1;
 					}
 					this.isFacingRight = false;
 					break;
 				case this.keys.RIGHT:
-					this.playerVel.x += 2;
-					while (this.playerVel.x <= 3) {
+					this.playerVel.x += 1;
+					while (this.playerVel.x <= 2) {
 						this.playerVel.x += 1;
 					}
 					this.isFacingRight = true;
