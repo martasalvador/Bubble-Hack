@@ -34,7 +34,7 @@
 - [ 💁‍♀️ ] Mejorar gravedad
 - [ 💁‍♀️ ] Que no se salga de la pantalla
 - [ 💁‍♀️ ] Volver a ver colisiones de salto con plataforma
-- [ 💁 ] Movimiento fluido
+- [ ] Movimiento fluido
 - [ ] Impedir que el jugador pueda saltar dos veces seguidas sin colisionar
 - [ ] Gravedad fluida al tocar el suelo
 - Para movimiento fluido hay que asociar el eventlistener a un booleano para que funcione correctamente con el intervalo. Hay que usar keyup y keydown
@@ -71,6 +71,7 @@
 
 ## BONUS
 
+- [ ] Al reaparecer tarda un poco en dejarte mover
 - [ ] Teclas en pantalla se pulsan cuando las pulsas en el teclado
 - [ ] Cambiar foto del personaja
 - [ ] Si muere --> Suelta fruta

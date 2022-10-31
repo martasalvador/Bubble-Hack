@@ -12,12 +12,18 @@ class Player {
 		this.floor = this.canvasSize.h - this.playerSize.h - 20;
 		this.bubble = [];
 		this.isFacingRight = true;
+		this.isPressed = {
+			right: false,
+			left: false,
+			up: false,
+		};
 	}
 	drawPlayer() {
 		this.bubble.forEach((b) => b.drawBubble());
 
 		this.ctx.fillStyle = "white";
 		this.ctx.fillRect(this.playerPos.x, this.playerPos.y, this.playerSize.w, this.playerSize.h);
+		this.movePlayer();
 	}
 
 	shoot() {
@@ -42,19 +48,21 @@ class Player {
 		document.onkeydown = (event) => {
 			switch (event.key) {
 				case this.keys.LEFT:
-					if (this.playerVel.x > -12) {
-						this.playerVel.x -= 4;
+					this.playerVel.x -= 1;
+					if (this.playerVel.x >= -5) {
+						this.playerVel.x -= 2;
 					}
 					this.isFacingRight = false;
 					break;
 				case this.keys.RIGHT:
-					if (this.playerVel.x < 12) {
-						this.playerVel.x += 4;
+					this.playerVel.x += 1;
+					if (this.playerVel.x <= 5) {
+						this.playerVel.x += 2;
 					}
 					this.isFacingRight = true;
 					break;
 				case this.keys.UP:
-					if (this.playerVel.y > -30) {
+					if (this.playerVel.y > -35) {
 						this.playerVel.y -= 28;
 					}
 					break;
@@ -66,10 +74,10 @@ class Player {
 		document.onkeyup = (event) => {
 			switch (event.key) {
 				case this.keys.LEFT:
-					this.playerVel.x = 0;
 					while (this.playerVel.x < 0) {
 						this.playerVel.x += 1;
 					}
+
 					break;
 				case this.keys.RIGHT:
 					while (this.playerVel.x > 0) {
@@ -77,7 +85,6 @@ class Player {
 					}
 					break;
 				case this.keys.UP:
-					// this.playerVel.y -= 0; ¿?
 					break;
 				case this.keys.SPACE:
 					break;

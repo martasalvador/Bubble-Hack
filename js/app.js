@@ -20,7 +20,7 @@ const App = {
 	platforms: [],
 	enemy: [],
 	lives: 3,
-	time: 60,
+	time: 2000,
 	score: 1000,
 
 	init() {
@@ -72,7 +72,6 @@ const App = {
 		this.enemy.forEach((e) => e.drawEnemy());
 
 		this.player.drawPlayer();
-		this.player.movePlayer();
 	},
 	createPlayer() {
 		this.player = new Player(this.ctx, this.canvasSize, this.keys, this.physics);
@@ -156,7 +155,7 @@ const App = {
 	drawTime(text) {
 		this.ctx.fillStyle = "white";
 		this.ctx.font = "25px monospace";
-		this.ctx.fillText(text, 820, 60);
+		this.ctx.fillText(text, 790, 60);
 	},
 	drawGameOver() {
 		this.ctx.fillStyle = "black";
