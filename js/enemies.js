@@ -4,7 +4,7 @@ class Enemy {
 		this.canvasSize = canvasSize;
 		this.enemySize = { h: 40, w: 40 };
 		this.enemyPos = { x: enemyPosX, y: enemyPosY };
-		this.enemyVel = { x: 4, y: 1 };
+		this.enemyVel = { x: 1.5, y: 1 };
 	}
 	drawEnemy() {
 		this.ctx.fillStyle = "lightgreen";

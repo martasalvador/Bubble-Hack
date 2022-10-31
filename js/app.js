@@ -19,6 +19,7 @@ const App = {
 	player: undefined,
 	platforms: [],
 	enemy: [],
+	FPS: 60,
 	lives: 3,
 	time: 2000,
 	score: 1000,
@@ -51,7 +52,7 @@ const App = {
 			this.bubbleEnemyCollision();
 
 			this.isGameOver();
-		}, 60);
+		}, 1000 / this.FPS);
 	},
 	clearAll() {
 		this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h);

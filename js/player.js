@@ -48,16 +48,16 @@ class Player {
 		document.onkeydown = (event) => {
 			switch (event.key) {
 				case this.keys.LEFT:
-					this.playerVel.x -= 1;
-					if (this.playerVel.x >= -5) {
-						this.playerVel.x -= 2;
+					this.playerVel.x -= 2;
+					while (this.playerVel.x >= -3) {
+						this.playerVel.x -= 1;
 					}
 					this.isFacingRight = false;
 					break;
 				case this.keys.RIGHT:
-					this.playerVel.x += 1;
-					if (this.playerVel.x <= 5) {
-						this.playerVel.x += 2;
+					this.playerVel.x += 2;
+					while (this.playerVel.x <= 3) {
+						this.playerVel.x += 1;
 					}
 					this.isFacingRight = true;
 					break;
@@ -102,11 +102,11 @@ class Player {
 
 		if (this.playerPos.x + this.playerSize.w > this.canvasSize.w - 20) {
 			// Check if player can go further than canvas size
-			this.playerPos.x -= 2;
+			this.playerPos.x = this.canvasSize.w - this.playerSize.w - 20;
 			this.playerVel.x = 0;
 		} else if (this.playerPos.x < 20) {
 			// Check if player can go further than x=0
-			this.playerPos.x += 2;
+			this.playerPos.x = 20;
 			this.playerVel.x = 0;
 		}
 		this.playerPos.x += this.playerVel.x;
