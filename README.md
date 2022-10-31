@@ -62,6 +62,7 @@
 - [ 💁‍♀️ ] Colisión con bubble
 - [ 💁‍♀️ ] Si colisiona con Bubble, se filtra del array
 - [ 💁‍♀️ ] Si matan 3 veces al player --> Gameover
+- [ ] ¿A veces un enemigo va más rápido que otro?<!-- REVISAR -->
 
 ##  GAMEOVER
 
