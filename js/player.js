@@ -48,15 +48,13 @@ class Player {
 		document.onkeydown = (event) => {
 			switch (event.key) {
 				case this.keys.LEFT:
-					this.playerVel.x -= 1;
-					while (this.playerVel.x >= -2) {
+					while (this.playerVel.x >= -3) {
 						this.playerVel.x -= 1;
 					}
 					this.isFacingRight = false;
 					break;
 				case this.keys.RIGHT:
-					this.playerVel.x += 1;
-					while (this.playerVel.x <= 2) {
+					while (this.playerVel.x <= 3) {
 						this.playerVel.x += 1;
 					}
 					this.isFacingRight = true;
@@ -75,13 +73,12 @@ class Player {
 			switch (event.key) {
 				case this.keys.LEFT:
 					while (this.playerVel.x < 0) {
-						this.playerVel.x += 1;
+						this.playerVel.x += 0.5;
 					}
-
 					break;
 				case this.keys.RIGHT:
 					while (this.playerVel.x > 0) {
-						this.playerVel.x -= 1;
+						this.playerVel.x -= 0.5;
 					}
 					break;
 				case this.keys.UP:

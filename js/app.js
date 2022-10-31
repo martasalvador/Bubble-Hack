@@ -88,9 +88,9 @@ const App = {
 	},
 	createEnemy() {
 		this.enemy.push(
-			new Enemy(this.ctx, this.canvasSize, 500, 180),
-			new Enemy(this.ctx, this.canvasSize, 400, 330),
-			new Enemy(this.ctx, this.canvasSize, 300, 480)
+			new Enemy(this.ctx, this.canvasSize, 525, 180),
+			new Enemy(this.ctx, this.canvasSize, 450, 330),
+			new Enemy(this.ctx, this.canvasSize, 375, 480)
 		);
 	},
 

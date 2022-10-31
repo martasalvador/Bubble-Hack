@@ -27,6 +27,7 @@ div {
 
 canvas {
 	animation: game 1s ease-in;
+	scale: 0.85;
 }
 
 h1 {
