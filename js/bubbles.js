@@ -3,7 +3,7 @@ class Bubble {
 		this.ctx = ctx;
 		this.canvasSize = canvasSize;
 		this.bubblePos = { x: playerPosX + playerWidth / 2, y: playerPosY + playerHeight / 2 };
-		this.bubbleVel = { x: 4, y: 3 };
+		this.bubbleVel = { x: 4, y: 1 };
 		this.bubbleRadius = 15;
 		this.maxDistanceRight = this.bubblePos.x + 250;
 		this.maxDistanceLeft = this.bubblePos.x - 250;

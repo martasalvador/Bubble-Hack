@@ -7,7 +7,7 @@ class Player {
 
 		this.playerSize = { h: 50, w: 50 };
 		this.playerPos = { x: this.canvasSize.w - 830, y: this.canvasSize.h - this.playerSize.h - 100 };
-		this.playerVel = { x: 0, y: 10 };
+		this.playerVel = { x: 0, y: 1 };
 
 		this.floor = this.canvasSize.h - this.playerSize.h - 20;
 		this.bubble = [];

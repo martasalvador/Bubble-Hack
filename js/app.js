@@ -50,6 +50,8 @@ const App = {
 			this.drawAll();
 			this.playerPlatformCollision();
 			this.bubbleEnemyCollision();
+			this.checkCol2();
+			this.bubblePlatformCollision();
 
 			this.isGameOver();
 		}, 1000 / this.FPS);
@@ -122,6 +124,53 @@ const App = {
 					b.bubbleColor = "peachpuff";
 				}
 			});
+		});
+	},
+
+	bubblePlatformCollision() {
+		this.player.bubble.forEach((b) => {
+			this.platforms.forEach((p) => {
+				if (
+					// Chequea si colisionar con una plataforma
+					p.platformPos.x < b.bubblePos.x + b.bubbleRadius &&
+					p.platformPos.x + p.platformSize.w > b.bubblePos.x - b.bubbleRadius &&
+					p.platformPos.y < b.bubblePos.y + b.bubbleRadius &&
+					p.platformPos.y + p.platformSize.h > b.bubblePos.y - b.bubbleRadius
+				) {
+					// Cuando colisiones por ..., haz esto
+					//// Izquierda
+					if (p.platformPos.x < b.bubblePos.x + b.bubbleRadius) {
+						b.bubbleVel.y += 2;
+						b.bubbleVel.x = 0;
+					}
+					//// Derecha
+					if (p.platformPos.x + p.platformSize.w > b.bubblePos.x - b.bubbleRadius) {
+						b.bubbleVel.y += 2;
+						b.bubbleVel.x = 0;
+					}
+					/* //// Arriba
+					if (p.platformPos.y < b.bubblePos.y + b.bubbleRadius) {
+						b.bubbleVel.y += 2;
+					} */
+					//// Abajo
+					if (p.platformPos.y + p.platformSize.h > b.bubblePos.y - b.bubbleRadius) {
+						b.bubbleVel.y = 0;
+						b.bubbleVel.x += 1.4;
+						b.bubblePos.x += b.bubbleVel.x;
+					}
+					console.log(b.bubbleVel.x);
+
+					//// Si al colisionar y checkear el lado
+				}
+			});
+		});
+	},
+
+	checkCol2() {
+		this.player.bubble.forEach((b) => {
+			if (!this.bubblePlatformCollision()) {
+				b.bubbleVel.y += 0.02;
+			}
 		});
 	},
 
