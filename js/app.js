@@ -14,11 +14,13 @@ const App = {
 	},
 	physics: {
 		gravity: 2,
+		fruitsGravity: 0.5,
 	},
 	background: undefined,
 	player: undefined,
 	platforms: [],
 	enemy: [],
+	fruit: [],
 	FPS: 60,
 	lives: 3,
 	time: 2000,
@@ -73,6 +75,9 @@ const App = {
 		this.platforms.forEach((p) => p.drawPlatform());
 
 		this.enemy.forEach((e) => e.drawEnemy());
+		this.fruit.forEach((f) => {
+			f.drawFruit();
+		});
 
 		this.player.drawPlayer();
 	},
@@ -122,6 +127,7 @@ const App = {
 				) {
 					e.enemyPos.x = 10000;
 					b.bubbleColor = "peachpuff";
+					this.fruit.push(new Fruit(this.ctx, this.canvasSize, this.physics));
 				}
 			});
 		});
