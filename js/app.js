@@ -57,6 +57,7 @@ const App = {
 			this.playerFruitCollision();
 			this.fruitPlatformCollision();
 			this.playerBubbleCollision();
+			this.deleteOldBubbles();
 
 			this.isGameOver();
 		}, 1000 / this.FPS);
@@ -124,6 +125,7 @@ const App = {
 	bubbleEnemyCollision() {
 		this.player.bubble.forEach((b) => {
 			this.enemy.forEach((e) => {
+				let enemyBubbles = [];
 				if (
 					e.enemyPos.x <= b.bubblePos.x + b.bubbleRadius &&
 					e.enemyPos.x + e.enemySize.w >= b.bubblePos.x &&
@@ -135,6 +137,17 @@ const App = {
 					this.fruit.push(new Fruit(this.ctx, this.canvasSize, this.physics));
 				}
 			});
+			console.log(typeof b.bubbleColor);
+		});
+	},
+
+	deleteOldBubbles() {
+		this.player.bubble.forEach((b) => {
+			if ([...b.bubbleColor] === "lightblue") {
+				setTimeout(() => {
+					b.bubblePos.x = 50000;
+				}, 10000);
+			}
 		});
 	},
 
@@ -222,34 +235,24 @@ const App = {
 
 	playerBubbleCollision() {
 		this.player.bubble.forEach((b) => {
-			/* if (b.bubblePos.x > b.maxDistanceRight) {
-				if (
-					this.player.playerPos.x <= b.bubblePos.x + b.bubbleRadius &&
-					this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x &&
-					this.player.playerPos.y <= b.bubblePos.y &&
-					this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y
-				) {
-					b.bubblePos.x = 10000;
-				}
-			}
-			else if (b.bubblePos.x < b.maxDistanceLeft) {
-				if (
-					this.player.playerPos.x <= b.bubblePos.x + b.bubbleRadius &&
-					this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x &&
-					this.player.playerPos.y <= b.bubblePos.y &&
-					this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y
-				) {
-					b.bubblePos.x = 10000;
-				}
-			} */
 			setTimeout(() => {
 				if (
-					this.player.playerPos.x <= b.bubblePos.x + b.bubbleRadius &&
-					this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x &&
-					this.player.playerPos.y <= b.bubblePos.y &&
-					this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y
+					this.player.playerPos.x <= b.bubblePos.x + b.bubbleRadius / 2 &&
+					this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x - b.bubbleRadius &&
+					this.player.playerPos.y <= b.bubblePos.y + b.bubbleRadius &&
+					this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleRadius
 				) {
-					b.bubblePos.x = 10000;
+					/* if (
+						this.player.playerPos.x <= b.bubblePos.x + b.bubbleRadius &&
+						this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x - b.bubbleRadius &&
+						this.player.playerPos.y <= b.bubblePos.y + b.bubbleRadius
+					) {
+						b.bubblePos.x = 10000;
+					} */
+					if (this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleRadius) {
+						this.player.playerVel.y = b.bubbleVel.y;
+						this.player.playerPos.y = b.bubblePos.y - b.bubbleRadius - this.player.playerSize.h;
+					}
 				}
 			}, 1000);
 		});
