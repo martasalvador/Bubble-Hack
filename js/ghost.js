@@ -4,7 +4,7 @@ class Ghost {
 		this.canvasSize = canvasSize;
 		this.ghostPos = { x: 750, y: 20 };
 		this.ghostSize = { h: 40, w: 40 };
-		this.ghostVel = { x: 2, y: 2 };
+		this.ghostVel = { x: 1, y: 1 };
 	}
 	drawGhost(playerPos) {
 		this.ctx.fillStyle = "#808080";

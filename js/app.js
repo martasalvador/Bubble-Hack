@@ -1,6 +1,6 @@
 const App = {
-	appName: "IRON BUBBLE",
-	version: "1.0.0",
+	appName: "BUBBLE HACK",
+	version: "20.2.4",
 	license: undefined,
 	author: "Marta Salvador y Manuel Atance",
 	description: "Mi primerito juego",
@@ -60,6 +60,7 @@ const App = {
 			this.playerFruitCollision();
 			this.fruitPlatformCollision();
 			this.playerBubbleCollision();
+			this.ghostPlayerCollision();
 			// this.deleteOldBubbles();
 
 			this.isVictory();
@@ -265,6 +266,28 @@ const App = {
 		});
 	},
 
+	ghostPlayerCollision() {
+		if (
+			this.player.playerPos.x <= this.ghost.ghostPos.x + this.ghost.ghostSize.w &&
+			this.player.playerPos.x + this.player.playerSize.w >= this.ghost.ghostPos.x &&
+			this.player.playerPos.y <= this.ghost.ghostPos.y &&
+			this.player.playerPos.y + this.player.playerSize.h >= this.ghost.ghostPos.y
+		) {
+			if (this.score > 0) {
+				this.score -= 100;
+			}
+			this.player.playerColor = "#1f001b";
+			this.player.playerPos.x = 900;
+			this.player.playerPos.y = 200;
+			setTimeout(() => {
+				this.player.playerPos.x = this.canvasSize.w - 800;
+
+				this.player.playerPos.y = this.canvasSize.h - this.player.playerSize.h - 100;
+				this.player.playerColor = "white";
+			}, 500);
+		}
+	},
+
 	calculateLives() {
 		this.enemy.forEach((e) => {
 			if (
@@ -293,16 +316,25 @@ const App = {
 		this.ctx.font = "25px monospace";
 		this.ctx.fillText(text, 50, 60);
 	},
+
 	calculateTime() {
 		setInterval(() => {
-			if (this.time > 0) this.time--;
+			if (this.time > 0) {
+				this.time--;
+				if (this.ghost.ghostVel.x < 2 || this.ghost.ghostVel.y < 2) {
+					this.ghost.ghostVel.x += 0.05;
+					this.ghost.ghostVel.y += 0.05;
+				}
+			}
 		}, 1000);
 	},
+
 	drawTime(text) {
 		this.ctx.fillStyle = "white";
 		this.ctx.font = "25px monospace";
 		this.ctx.fillText(text, 790, 60);
 	},
+
 	drawGameOver() {
 		this.ctx.fillStyle = "black";
 		this.ctx.fillRect(0, 0, this.canvasSize.w, this.canvasSize.h);
@@ -316,13 +348,17 @@ const App = {
 		this.ctx.fillStyle = "#FF00FF";
 		this.ctx.beginPath();
 		this.ctx.font = "40px monospace";
-		this.ctx.fillText(`Your score is: ${this.score}`, 210, 400);
+		if (this.score === 0) {
+			this.ctx.fillText(`You suck! :)`, 300, 400);
+		} else {
+			this.ctx.fillText(`Your score is: ${this.score}`, 210, 400);
+		}
 		// Cambiar 400 por 370 cuando tengamos botón
 		this.ctx.closePath();
 	},
 
 	isGameOver() {
-		if (this.lives === 0 || this.time === 0) {
+		if (this.lives <= 0 || this.time <= 0 || this.score <= 0) {
 			this.clearAll();
 			this.drawGameOver();
 		}

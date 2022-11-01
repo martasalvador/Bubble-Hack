@@ -1,4 +1,4 @@
-# LIVE VERSION HERE https://iron-bubble.netlify.app/
+# LIVE VERSION HERE https://bubble-hack.netlify.app/
 
 # MÍNIMOS
 
@@ -79,6 +79,12 @@
 - [ 💁‍♀️ ] Si muere --> Suelta fruta
 - [ 💁‍♀️ ] Suma puntos al coger fruta
 - [ 💁‍♀️ ] Fruta colisiona con las plataformas
+
+## GHOST ( BONUS )
+
+- [ 💁‍♀️ ] Aparece ghost
+- [ 💁‍♀️ ] Ghost persigue al jugador <!-- YAY -->
+- [ 💁‍♀️ ] Ghost te quita puntos
 
 ##  GAMEOVER
 
