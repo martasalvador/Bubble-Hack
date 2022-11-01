@@ -13,7 +13,6 @@
 
 - [ ] Solo explotan burbujas azules
 - [ ] Efecto flotando al llegar arriba
-- [ ] Jugador explota burbujas al tocarlas
 - [ ] Si jugador toca burbuja por arriba, salta
 
 ## INTRO
@@ -62,6 +61,7 @@
 - [ 💁‍♀️ ] Crear burbujas en ambos sentidos
 - [ 💁‍♀️ ] Burbujas suben por la izquierda
 - [ 💁‍♀️ ] Solo lanza una burbuja cada 1s
+- [ 💁‍♀️ ] Jugador explota burbujas al tocarlas
 
 ## ENEMIES
 
