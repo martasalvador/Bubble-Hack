@@ -59,6 +59,7 @@ const App = {
 			this.playerBubbleCollision();
 			this.deleteOldBubbles();
 
+			this.isVictory();
 			this.isGameOver();
 		}, 1000 / this.FPS);
 	},
@@ -142,13 +143,13 @@ const App = {
 	},
 
 	deleteOldBubbles() {
-		this.player.bubble.forEach((b) => {
-			if ([...b.bubbleColor] === "lightblue") {
+		/* this.player.bubble.forEach((b) => {
+			if (b.bubbleColor === "lightblue") {
 				setTimeout(() => {
 					b.bubblePos.x = 50000;
-				}, 10000);
+				}, 5000);
 			}
-		});
+		}); */
 	},
 
 	playerFruitCollision() {
@@ -268,8 +269,13 @@ const App = {
 			) {
 				if (this.lives > 0) {
 					this.lives--;
+					this.player.playerColor = "#1f001b";
 					this.player.playerPos.x = this.canvasSize.w - 800;
-					this.player.playerPos.y = this.canvasSize.h - this.player.playerSize.h - 100;
+					setTimeout(() => {
+						this.player.playerPos.x = this.canvasSize.w - 800;
+						this.player.playerPos.y = this.canvasSize.h - this.player.playerSize.h - 100;
+						this.player.playerColor = "white";
+					}, 500);
 				} else {
 					this.lives = 0;
 				}
@@ -304,7 +310,7 @@ const App = {
 		this.ctx.fillStyle = "#FF00FF";
 		this.ctx.beginPath();
 		this.ctx.font = "40px monospace";
-		this.ctx.fillText(`Your score is: ${this.score}`, 220, 400);
+		this.ctx.fillText(`Your score is: ${this.score}`, 210, 400);
 		// Cambiar 400 por 370 cuando tengamos botón
 		this.ctx.closePath();
 	},
@@ -328,5 +334,36 @@ const App = {
 				this.score += 100;
 			}
 		});
+	},
+
+	drawVictory() {
+		this.ctx.fillStyle = "black";
+		this.ctx.fillRect(0, 0, this.canvasSize.w, this.canvasSize.h);
+
+		this.ctx.fillStyle = "white";
+		this.ctx.beginPath();
+		this.ctx.font = "70px monospace";
+		this.ctx.fillText("VICTORY!!", 250, 250);
+		this.ctx.closePath();
+
+		this.ctx.fillStyle = "#FF00FF";
+		this.ctx.beginPath();
+		this.ctx.font = "40px monospace";
+		this.ctx.fillText(`Your score is: ${this.score}`, 210, 400);
+		// Cambiar 400 por 370 cuando tengamos botón
+		this.ctx.closePath();
+
+		this.ctx.fillStyle = "white";
+		this.ctx.beginPath();
+		this.ctx.font = "30px monospace";
+		this.ctx.fillText(`Play again?`, 345, 550);
+		// Cambiar 400 por 370 cuando tengamos botón
+		this.ctx.closePath();
+	},
+	isVictory() {
+		if (this.enemy.length === 0) {
+			this.clearAll();
+			this.drawVictory();
+		}
 	},
 };
