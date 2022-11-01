@@ -11,7 +11,6 @@ class Player {
 
 		this.floor = this.canvasSize.h - this.playerSize.h - 20;
 		this.bubble = [];
-		this.bubbledEnemy = [];
 		this.isFacingRight = true;
 	}
 	drawPlayer() {
