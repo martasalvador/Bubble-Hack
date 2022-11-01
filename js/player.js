@@ -12,11 +12,12 @@ class Player {
 		this.floor = this.canvasSize.h - this.playerSize.h - 20;
 		this.bubble = [];
 		this.isFacingRight = true;
+		this.playerColor = "white";
 	}
 	drawPlayer() {
 		this.bubble.forEach((b) => b.drawBubble());
 
-		this.ctx.fillStyle = "white";
+		this.ctx.fillStyle = this.playerColor;
 		this.ctx.fillRect(this.playerPos.x, this.playerPos.y, this.playerSize.w, this.playerSize.h);
 		this.movePlayer();
 	}

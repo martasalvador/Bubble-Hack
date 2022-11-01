@@ -48,6 +48,7 @@
 - [ 💁‍♀️ ] Colisión con Enemies
 - [ 💁‍♀️ ] 3 vidas
 - [ 💁‍♀️ ] Si encierra al enemigo con la burbuja --> Suma 100 puntos
+- [ 💁‍♀️ ] Al morir tarda 0.5s en reaparecer
 
 ## BUBBLES
 
@@ -82,13 +83,12 @@
 
 - [ 💁‍♀️ ] Si mueres 3 veces o se acaba el tiempo
 - [ 💁‍♀️ ] Aparece la puntuación
-- [ ] Añadir botón de restart
-- [ ] Añadir pantalla de victoria
+- [ 💁‍♀️ ] Añadir botón de restart
+- [ 💁‍♀️ ] Añadir pantalla de victoria
 
 ## BONUS
 
 - [ ] Al reaparecer tarda un poco en dejarte mover
-- [ ] Teclas en pantalla se pulsan cuando las pulsas en el teclado
 - [ ] Cambiar foto del personaje
 - [ ] Nuevos niveles
 - [ ] Salta sobre las burbujas
