@@ -55,6 +55,8 @@ const App = {
 			this.checkBubblePlatformCollision();
 			this.bubblePlatformCollision();
 			this.playerFruitCollision();
+			this.fruitPlatformCollision();
+			this.playerBubbleCollision();
 
 			this.isGameOver();
 		}, 1000 / this.FPS);
@@ -63,6 +65,7 @@ const App = {
 		this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h);
 		this.enemy = this.enemy.filter((e) => e.enemyPos.x < this.canvasSize.w);
 		this.fruit = this.fruit.filter((f) => f.fruitPos.x < this.canvasSize.w);
+		this.player.bubble = this.player.bubble.filter((b) => b.bubblePos.x < this.canvasSize.w);
 	},
 	drawAll() {
 		this.background = new Background(this.ctx, this.canvasSize);
@@ -196,6 +199,59 @@ const App = {
 			if (!this.bubblePlatformCollision()) {
 				b.bubbleVel.y += 0.02;
 			}
+		});
+	},
+
+	fruitPlatformCollision() {
+		this.fruit.forEach((f) => {
+			this.platforms.forEach((p) => {
+				if (
+					p.platformPos.x < f.fruitPos.x + f.fruitSize.w &&
+					p.platformPos.x + p.platformSize.w > f.fruitPos.x - f.fruitSize.w &&
+					p.platformPos.y < f.fruitPos.y + f.fruitSize.h &&
+					p.platformPos.y + p.platformSize.h > f.fruitPos.y - f.fruitSize.h
+				) {
+					f.fruitPos.y = p.platformPos.y - f.fruitSize.h;
+					if (f.fruitVel.y > 0) {
+						f.fruitVel.y = 0;
+					}
+				}
+			});
+		});
+	},
+
+	playerBubbleCollision() {
+		this.player.bubble.forEach((b) => {
+			/* if (b.bubblePos.x > b.maxDistanceRight) {
+				if (
+					this.player.playerPos.x <= b.bubblePos.x + b.bubbleRadius &&
+					this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x &&
+					this.player.playerPos.y <= b.bubblePos.y &&
+					this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y
+				) {
+					b.bubblePos.x = 10000;
+				}
+			}
+			else if (b.bubblePos.x < b.maxDistanceLeft) {
+				if (
+					this.player.playerPos.x <= b.bubblePos.x + b.bubbleRadius &&
+					this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x &&
+					this.player.playerPos.y <= b.bubblePos.y &&
+					this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y
+				) {
+					b.bubblePos.x = 10000;
+				}
+			} */
+			setTimeout(() => {
+				if (
+					this.player.playerPos.x <= b.bubblePos.x + b.bubbleRadius &&
+					this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x &&
+					this.player.playerPos.y <= b.bubblePos.y &&
+					this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y
+				) {
+					b.bubblePos.x = 10000;
+				}
+			}, 1000);
 		});
 	},
 

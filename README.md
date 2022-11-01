@@ -13,6 +13,8 @@
 
 - [ ] Solo explotan burbujas azules
 - [ ] Efecto flotando al llegar arriba
+- [ ] Jugador explota burbujas al tocarlas
+- [ ] Si jugador toca burbuja por arriba, salta
 
 ## INTRO
 
@@ -74,7 +76,7 @@
 - [ 💁‍♀️ ] Aparece fruta
 - [ 💁‍♀️ ] Si muere --> Suelta fruta
 - [ 💁‍♀️ ] Suma puntos al coger fruta
-- [ ] Colisiona con las plataformas
+- [ 💁‍♀️ ] Fruta colisiona con las plataformas
 
 ##  GAMEOVER
 
