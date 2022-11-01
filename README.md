@@ -49,6 +49,7 @@
 - [ 💁‍♀️ ] 3 vidas
 - [ 💁‍♀️ ] Si encierra al enemigo con la burbuja --> Suma 100 puntos
 - [ 💁‍♀️ ] Al morir tarda 0.5s en reaparecer
+- [ 💁‍♀️ ] Al reaparecer tarda un poco en dejarte mover
 
 ## BUBBLES
 
@@ -95,7 +96,6 @@
 
 ## BONUS
 
-- [ 💁‍♀️ ] Al reaparecer tarda un poco en dejarte mover
 - [ ] Nuevos niveles
 - [ ] ¿Multiplayer? xd
 

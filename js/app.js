@@ -50,7 +50,6 @@ const App = {
 	},
 	start() {
 		setInterval(() => {
-			this.calculateScore();
 			this.clearAll();
 			this.drawAll();
 			this.playerPlatformCollision();
@@ -62,16 +61,12 @@ const App = {
 			this.playerBubbleCollision();
 			this.ghostPlayerCollision();
 			// this.deleteOldBubbles();
-
 			this.isVictory();
 			this.isGameOver();
 		}, 1000 / this.FPS);
 	},
 	clearAll() {
 		this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h);
-		this.enemy = this.enemy.filter((e) => e.enemyPos.x < this.canvasSize.w);
-		this.fruit = this.fruit.filter((f) => f.fruitPos.x < this.canvasSize.w);
-		this.player.bubble = this.player.bubble.filter((b) => b.bubblePos.x < this.canvasSize.w);
 	},
 	drawAll() {
 		this.background = new Background(this.ctx, this.canvasSize);
@@ -141,7 +136,9 @@ const App = {
 					e.enemyPos.y <= b.bubblePos.y &&
 					e.enemyPos.y + e.enemySize.h >= b.bubblePos.y
 				) {
-					e.enemyPos.x = 10000;
+					let enemyToDelete = this.enemy.indexOf(e);
+					this.enemy.splice(enemyToDelete, 1);
+					this.score += 100;
 					b.bubbleColor = "peachpuff";
 					this.fruit.push(new Fruit(this.ctx, this.canvasSize, this.physics));
 				}
@@ -167,7 +164,8 @@ const App = {
 				this.player.playerPos.y <= f.fruitPos.y &&
 				this.player.playerPos.y + this.player.playerSize.h >= f.fruitPos.y
 			) {
-				f.fruitPos.x = 10000;
+				let fruitToDelete = this.fruit.indexOf(f);
+				this.fruit.splice(fruitToDelete, 1);
 				this.score += 100;
 			}
 		});
@@ -255,7 +253,8 @@ const App = {
 						this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x - b.bubbleRadius &&
 						this.player.playerPos.y <= b.bubblePos.y + b.bubbleRadius
 					) {
-						b.bubblePos.x = 10000;
+						let bubbleToDelete = this.player.bubble.indexOf(b)
+						this.player.bubble.splice(bubbleToDelete,1)
 					} */
 					if (this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleRadius) {
 						this.player.playerVel.y = b.bubbleVel.y;
@@ -273,8 +272,10 @@ const App = {
 			this.player.playerPos.y <= this.ghost.ghostPos.y &&
 			this.player.playerPos.y + this.player.playerSize.h >= this.ghost.ghostPos.y
 		) {
-			if (this.score > 0) {
-				this.score -= 100;
+			if (this.lives > 0) {
+				if (this.score > 0) {
+					this.score -= 100;
+				}
 			}
 			this.player.playerColor = "#1f001b";
 			this.player.playerPos.x = 900;
@@ -368,14 +369,6 @@ const App = {
 		this.ctx.fillStyle = "white";
 		this.ctx.font = "25px monospace";
 		this.ctx.fillText(this.score, this.canvasSize.w / 2 - 30, 60);
-	},
-
-	calculateScore() {
-		this.enemy.forEach((e) => {
-			if (e.enemyPos.x === 10000) {
-				this.score += 100;
-			}
-		});
 	},
 
 	drawVictory() {
