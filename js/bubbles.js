@@ -33,18 +33,18 @@ class Bubble {
 					this.bubbleVel.x = 0;
 					this.bubbleVel.y = 3;
 				}
-				if (this.bubblePos.y > this.canvasSize.h - 600) {
+				if (this.bubblePos.y > this.canvasSize.h - 550) {
 					this.bubblePos.y -= this.bubbleVel.y;
 				} else {
-					this.bubblePos.y = 100;
+					this.bubblePos.y = 150;
 				}
 			}
 			if (this.bubblePos.x > this.maxDistanceRight) {
 				this.bubbleVel.x = 0;
-				if (this.bubblePos.y > this.canvasSize.h - 600) {
+				if (this.bubblePos.y > this.canvasSize.h - 550) {
 					this.bubblePos.y -= this.bubbleVel.y;
 				} else {
-					this.bubblePos.y = 100;
+					this.bubblePos.y = 150;
 				}
 			}
 			this.bubblePos.x += this.bubbleVel.x;
@@ -60,19 +60,19 @@ class Bubble {
 					this.bubbleVel.x = 0;
 					this.bubbleVel.y = 3;
 				}
-				if (this.bubblePos.y > this.canvasSize.h - 600) {
+				if (this.bubblePos.y > this.canvasSize.h - 550) {
 					this.bubblePos.y -= this.bubbleVel.y;
 				} else {
-					this.bubblePos.y = 100;
+					this.bubblePos.y = 150;
 				}
 			}
 
 			if (this.bubblePos.x - this.bubbleRadius < this.maxDistanceLeft) {
 				this.bubbleVel.x = 0;
-				if (this.bubblePos.y > this.canvasSize.h - 600) {
+				if (this.bubblePos.y > this.canvasSize.h - 550) {
 					this.bubblePos.y -= this.bubbleVel.y;
 				} else {
-					this.bubblePos.y = 100;
+					this.bubblePos.y = 150;
 				}
 			}
 			this.bubblePos.x -= this.bubbleVel.x;
