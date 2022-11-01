@@ -34,7 +34,7 @@ class Player {
 				this.isFacingRight
 			)
 		);
-		if (this.bubble.length > 5) {
+		if (this.bubble.length > 7) {
 			this.bubble.shift();
 		}
 	}
@@ -55,8 +55,10 @@ class Player {
 					this.isFacingRight = true;
 					break;
 				case this.keys.UP:
-					if (this.playerVel.y > -35) {
-						this.playerVel.y -= 25;
+					if (this.playerVel.y === 0) {
+						if (this.playerVel.y > -35) {
+							this.playerVel.y -= 25;
+						}
 					}
 					break;
 				case this.keys.SPACE:

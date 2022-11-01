@@ -43,7 +43,7 @@
 - [ 💁‍♀️ ] Que no se salga de la pantalla
 - [ 💁‍♀️ ] Volver a ver colisiones de salto con plataforma
 - [ 💁‍♀️ ] Movimiento fluido
-- [ ] Impedir que el jugador pueda saltar dos veces seguidas
+- [ 💁‍♀️ ] Impedir que el jugador pueda saltar dos veces seguidas
 - [ 💁‍♀️ ] Gravedad fluida al tocar el suelo
 - [ 💁‍♀️ ] Colisión con Enemies
 - [ 💁‍♀️ ] 3 vidas
@@ -63,6 +63,7 @@
 - [ 💁‍♀️ ] Burbujas suben por la izquierda
 - [ 💁‍♀️ ] Solo lanza una burbuja cada 1s
 - [ 💁‍♀️ ] Jugador explota burbujas al tocarlas
+- [ 💁‍♀️ ] Se pone encima de las burbujas
 
 ## ENEMIES
 
@@ -88,12 +89,9 @@
 
 ## BONUS
 
-- [ ] Al reaparecer tarda un poco en dejarte mover
-- [ ] Cambiar foto del personaje
+- [ 💁‍♀️ ] Al reaparecer tarda un poco en dejarte mover
 - [ ] Nuevos niveles
-- [ ] Salta sobre las burbujas
 - [ ] ¿Multiplayer? xd
-- [ ] ¿Enemigos saltan? (si eso pa'l Bonus)
 
 ## BUGS
 
