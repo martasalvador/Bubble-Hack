@@ -2,9 +2,9 @@ class Ghost {
 	constructor(ctx, canvasSize) {
 		this.ctx = ctx;
 		this.canvasSize = canvasSize;
-		this.ghostPos = { x: 750, y: 20 };
+		this.ghostPos = { x: 920, y: -85 };
 		this.ghostSize = { h: 60, w: 60 };
-		this.ghostVel = { x: -2, y: -2 };
+		this.ghostVel = { x: -20, y: -20 }; // CAMBIAR A 1!
 
 		this.image = new Image();
 		this.image.src = "./images/ghost-left.png";

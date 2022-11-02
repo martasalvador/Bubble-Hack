@@ -23,7 +23,7 @@ const App = {
 	fruit: [],
 	FPS: 60,
 	lives: 3,
-	time: 60,
+	time: 2000,
 	score: 1000,
 	ghost: undefined,
 	framesCounter: 0,
@@ -142,7 +142,10 @@ const App = {
 					let enemyToDelete = this.enemy.indexOf(e);
 					this.enemy.splice(enemyToDelete, 1);
 					this.score += 100;
-					b.bubbleColor = "peachpuff";
+					b.image.src = "./images/bubbledEnemy.png";
+					b.bubbleSize.w = 60;
+					b.bubbleSize.h = 60;
+					b.bubblePos.y -= 30;
 					this.fruit.push(new Fruit(this.ctx, this.canvasSize, this.physics));
 				}
 			});
@@ -252,12 +255,12 @@ const App = {
 					this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h
 				) {
 					/* if (
-						this.player.playerPos.x <= b.bubblePos.x + b.bubbleSize.w &&
-						this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x - b.bubbleSize.w &&
-						this.player.playerPos.y <= b.bubblePos.y + b.bubbleSize.h
+						this.player.playerPos.x <= b.bubblePos.x + b.bubbleSize.w + 30 &&
+						this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x - b.bubbleSize.w + 30 &&
+						this.player.playerPos.y <= b.bubblePos.y + b.bubbleSize.h + 30
 					) {
-						let bubbleToDelete = this.player.bubble.indexOf(b)
-						this.player.bubble.splice(bubbleToDelete, 1)
+						let bubbleToDelete = this.player.bubble.indexOf(b);
+						this.player.bubble.splice(bubbleToDelete, 1);
 					} */
 					if (this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h) {
 						this.player.playerVel.y = b.bubbleVel.y;
@@ -399,7 +402,7 @@ const App = {
 		this.ctx.closePath();
 	},
 	isVictory() {
-		if (this.enemy.length === 0) {
+		if (this.enemy.length === 0 && this.fruit.length === 0) {
 			this.clearAll();
 			this.drawVictory();
 		}

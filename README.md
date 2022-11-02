@@ -11,9 +11,9 @@
 
 # TO-DO
 
-- [ ] Solo explotan burbujas azules
-- [ ] Efecto flotando al llegar arriba
-- [ ] Si jugador toca burbuja por arriba, salta
+- [ ] Solo explotan burbujas azules <!-- TICKET -->
+- [ ] Efecto flotando al llegar arriba <!-- TICKET -->
+- [ ] Si jugador toca burbuja por arriba, salta <!-- Hugo: Sumar a la burbuja -->
 
 ## INTRO
 
@@ -114,13 +114,21 @@
 ## BUGS
 
 - [ ] Clean code
-- [ ] Burbujas salen por la derecha de la pantalla
-- [ ] Burbujas salen de menor a mayor por la izq
+- [ 💁‍♀️ ] Burbujas salen por la derecha de la pantalla
+- [ 💁‍♀️ ] Burbujas salen de menor a mayor por la izq
 - [ ] Revisar funcion checkbubbleplatformcollision
-- [ ] Tarde en aparecer victory
-- [ ] Burbujas cada vez que lanzas una se aceleran en la colision con plataforma
+- [ 💁‍♀️ ] Tarde en aparecer victory
+- [ 💁‍♀️ ] Burbujas cada vez que lanzas una se aceleran en la colision con plataforma
 - [ 💁‍♀️ ] Personaje acelera hasta el infinito
 - [ 💁‍♀️ ] Enemigos velocidades distintas
+
+## STYLE (MAÑANA)
+
+- [ ] Sonidos
+- [ ] Fotos nuestras
+- [ ] Pantalla de inicio bonita
+- [ ] Pantalla victoria bonita
+- [ ] Pantalla game over bonita
 
 ### ANOTACIONES
 

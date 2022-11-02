@@ -39,7 +39,7 @@ class Enemy {
 	}
 
 	animateEnemy(framesCounter) {
-		if (framesCounter % 5 == 0) {
+		if (framesCounter % 8 == 0) {
 			this.image.frameIndex++;
 		}
 		if (this.image.frameIndex >= this.image.frames - 2) {
