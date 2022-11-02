@@ -57,10 +57,13 @@ class Player {
 		) {
 			this.image.frameIndex = 5;
 		}
-		if (framesCounter % 5 == 0) {
+		if (this.isPressed.space === true) {
+			this.image.frameIndex = 4;
+		}
+		if (framesCounter % 10 == 0) {
 			this.image.frameIndex++;
 		}
-		if (this.image.frameIndex >= this.image.frames - 2) {
+		if (this.image.frameIndex >= this.image.frames) {
 			this.image.frameIndex = 0;
 		}
 	}
@@ -70,8 +73,8 @@ class Player {
 			new Bubble(
 				this.ctx,
 				this.canvasSize,
-				this.playerPos.x,
-				this.playerPos.y,
+				this.playerPos.x - 15,
+				this.playerPos.y - 15,
 				this.playerSize.w,
 				this.playerSize.h,
 				this.isFacingRight

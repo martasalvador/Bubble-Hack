@@ -43,7 +43,7 @@ class Bubble {
 		// Dispara hacia la derecha
 		if (this.isFacingRight) {
 			this.isBubbleFacingRight = true;
-			if (this.maxDistanceRight > this.canvasSize.w - 30) {
+			if (this.maxDistanceRight > this.canvasSize.w - 60) {
 				if (this.bubblePos.x + this.bubbleSize.w < this.canvasSize.w - 40) {
 					this.bubblePos.x += this.bubbleVel.x;
 					this.bubbleVel.y = 0;
@@ -71,7 +71,7 @@ class Bubble {
 		else {
 			this.isBubbleFacingRight = false;
 			if (this.maxDistanceLeft < 30) {
-				if (this.bubblePos.x - this.bubbleSize.w > 40) {
+				if (this.bubblePos.x - this.bubbleSize.w > 0) {
 					this.bubblePos.x -= this.bubbleVel.x;
 					this.bubbleVel.y = 0;
 				} else {
@@ -85,7 +85,7 @@ class Bubble {
 				}
 			}
 
-			if (this.bubblePos.x - this.bubbleSize.w < this.maxDistanceLeft) {
+			if (this.bubblePos.x < this.maxDistanceLeft - this.bubbleSize.w) {
 				this.bubbleVel.x = 0;
 				if (this.bubblePos.y > this.canvasSize.h - 550) {
 					this.bubblePos.y -= this.bubbleVel.y;
@@ -97,7 +97,7 @@ class Bubble {
 		}
 	}
 	animateBubble(framesCounter) {
-		if (framesCounter % 5 == 0) {
+		if (framesCounter % 15 == 0) {
 			this.image.frameIndex++;
 		}
 		if (this.image.frameIndex >= this.image.frames) {
