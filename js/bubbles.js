@@ -10,15 +10,33 @@ class Bubble {
 		this.bubbleColor = "lightblue";
 		this.isFacingRight = isFacingRight;
 		this.isBubbleFacingRight = true;
+
+		this.image = new Image();
+		this.image.src = "./images/bubbles.png";
+		this.image.frames = 5;
+		this.image.frameIndex = 0;
 	}
 
-	drawBubble() {
-		this.ctx.beginPath();
+	drawBubble(framesCounter) {
+		this.ctx.drawImage(
+			this.image,
+			this.image.frameIndex * (this.image.width / this.image.frames),
+			0,
+			this.image.width / this.image.frames - 40,
+			this.image.height - 40,
+			this.playerPos.x,
+			this.playerPos.y,
+			this.playerSize.w,
+			this.playerSize.h
+		);
+
+		/* this.ctx.beginPath();
 		this.ctx.fillStyle = this.bubbleColor;
 		this.ctx.arc(this.bubblePos.x, this.bubblePos.y, this.bubbleRadius, 0, Math.PI * 2);
 		this.ctx.fill();
-		this.ctx.closePath();
+		this.ctx.closePath(); */
 
+		this.animateBubble(framesCounter);
 		this.moveBubble();
 	}
 	moveBubble() {
@@ -76,6 +94,14 @@ class Bubble {
 				}
 			}
 			this.bubblePos.x -= this.bubbleVel.x;
+		}
+	}
+	animateBubble(framesCounter) {
+		if (framesCounter % 5 == 0) {
+			this.image.frameIndex++;
+		}
+		if (this.image.frameIndex >= this.image.frames - 2) {
+			this.image.frameIndex = 0;
 		}
 	}
 }

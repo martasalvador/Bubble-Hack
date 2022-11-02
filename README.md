@@ -94,6 +94,13 @@
 - [ 💁‍♀️ ] Añadir botón de restart
 - [ 💁‍♀️ ] Añadir pantalla de victoria
 
+##  SPRITES
+
+- [ 💁‍♀️ ] Player
+- [ 💁‍♀️ ] Enemigos
+- [ ] Fruta
+- [ ] Burbuja
+
 ## BONUS
 
 - [ ] Nuevos niveles

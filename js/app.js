@@ -26,6 +26,7 @@ const App = {
 	time: 60,
 	score: 1000,
 	ghost: undefined,
+	framesCounter: 0,
 
 	init() {
 		this.setContext();
@@ -50,6 +51,8 @@ const App = {
 	},
 	start() {
 		setInterval(() => {
+			this.framesCounter > 5000 ? (this.framesCounter = 0) : this.framesCounter++;
+
 			this.clearAll();
 			this.drawAll();
 			this.playerPlatformCollision();
@@ -80,12 +83,12 @@ const App = {
 
 		this.platforms.forEach((p) => p.drawPlatform());
 
-		this.enemy.forEach((e) => e.drawEnemy());
+		this.enemy.forEach((e) => e.drawEnemy(this.framesCounter));
 		this.fruit.forEach((f) => {
-			f.drawFruit();
+			f.drawFruit(this.framesCounter);
 		});
-		this.player.drawPlayer();
-		this.ghost.drawGhost(this.player.playerPos);
+		this.player.drawPlayer(this.framesCounter);
+		this.ghost.drawGhost(this.player.playerPos, this.framesCounter);
 	},
 	createPlayer() {
 		this.player = new Player(this.ctx, this.canvasSize, this.keys, this.physics);
@@ -99,9 +102,9 @@ const App = {
 	},
 	createEnemy() {
 		this.enemy.push(
-			new Enemy(this.ctx, this.canvasSize, 525, 180),
-			new Enemy(this.ctx, this.canvasSize, 450, 330),
-			new Enemy(this.ctx, this.canvasSize, 375, 480)
+			new Enemy(this.ctx, this.canvasSize, 525, 170),
+			new Enemy(this.ctx, this.canvasSize, 450, 320),
+			new Enemy(this.ctx, this.canvasSize, 375, 470)
 		);
 	},
 
