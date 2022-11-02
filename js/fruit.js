@@ -3,7 +3,7 @@ class Fruit {
 		this.ctx = ctx;
 		this.canvasSize = canvasSize;
 		this.physics = physics;
-		this.fruitSize = { h: 40, w: 40 };
+		this.fruitSize = { h: 50, w: 50 };
 		this.fruitPos = { x: Math.floor(Math.random() * 800) + 20, y: 20 };
 		this.fruitVel = { x: 1, y: 0 };
 

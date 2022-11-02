@@ -2,7 +2,7 @@ class Enemy {
 	constructor(ctx, canvasSize, enemyPosX, enemyPosY) {
 		this.ctx = ctx;
 		this.canvasSize = canvasSize;
-		this.enemySize = { h: 50, w: 50 };
+		this.enemySize = { h: 60, w: 60 };
 		this.enemyPos = { x: enemyPosX, y: enemyPosY };
 		this.enemyVel = { x: 1.5, y: 1 };
 

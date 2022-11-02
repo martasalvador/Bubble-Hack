@@ -3,8 +3,8 @@ class Bubble {
 		this.ctx = ctx;
 		this.canvasSize = canvasSize;
 		this.bubblePos = { x: playerPosX + playerWidth / 2, y: playerPosY + playerHeight / 2 };
-		this.bubbleVel = { x: 4, y: 1 };
-		this.bubbleRadius = 15;
+		this.bubbleVel = { x: 4, y: 1.25 };
+		this.bubbleSize = { w: 40, h: 40 };
 		this.maxDistanceRight = this.bubblePos.x + 250;
 		this.maxDistanceLeft = this.bubblePos.x - 250;
 		this.bubbleColor = "lightblue";
@@ -12,8 +12,8 @@ class Bubble {
 		this.isBubbleFacingRight = true;
 
 		this.image = new Image();
-		this.image.src = "./images/bubbles.png";
-		this.image.frames = 5;
+		this.image.src = "./images/bubble.png";
+		this.image.frames = 6;
 		this.image.frameIndex = 0;
 	}
 
@@ -22,12 +22,12 @@ class Bubble {
 			this.image,
 			this.image.frameIndex * (this.image.width / this.image.frames),
 			0,
-			this.image.width / this.image.frames - 40,
-			this.image.height - 40,
-			this.playerPos.x,
-			this.playerPos.y,
-			this.playerSize.w,
-			this.playerSize.h
+			this.image.width / this.image.frames - 32,
+			this.image.height - 30,
+			this.bubblePos.x,
+			this.bubblePos.y,
+			this.bubbleSize.w,
+			this.bubbleSize.h
 		);
 
 		/* this.ctx.beginPath();
@@ -44,7 +44,7 @@ class Bubble {
 		if (this.isFacingRight) {
 			this.isBubbleFacingRight = true;
 			if (this.maxDistanceRight > this.canvasSize.w - 30) {
-				if (this.bubblePos.x + this.bubbleRadius < this.canvasSize.w - 30) {
+				if (this.bubblePos.x + this.bubbleSize.w < this.canvasSize.w - 40) {
 					this.bubblePos.x += this.bubbleVel.x;
 					this.bubbleVel.y = 0;
 				} else {
@@ -71,7 +71,7 @@ class Bubble {
 		else {
 			this.isBubbleFacingRight = false;
 			if (this.maxDistanceLeft < 30) {
-				if (this.bubblePos.x - this.bubbleRadius > 30) {
+				if (this.bubblePos.x - this.bubbleSize.w > 40) {
 					this.bubblePos.x -= this.bubbleVel.x;
 					this.bubbleVel.y = 0;
 				} else {
@@ -85,7 +85,7 @@ class Bubble {
 				}
 			}
 
-			if (this.bubblePos.x - this.bubbleRadius < this.maxDistanceLeft) {
+			if (this.bubblePos.x - this.bubbleSize.w < this.maxDistanceLeft) {
 				this.bubbleVel.x = 0;
 				if (this.bubblePos.y > this.canvasSize.h - 550) {
 					this.bubblePos.y -= this.bubbleVel.y;
@@ -100,8 +100,8 @@ class Bubble {
 		if (framesCounter % 5 == 0) {
 			this.image.frameIndex++;
 		}
-		if (this.image.frameIndex >= this.image.frames - 2) {
-			this.image.frameIndex = 0;
+		if (this.image.frameIndex >= this.image.frames) {
+			this.image.frameIndex = 4;
 		}
 	}
 }

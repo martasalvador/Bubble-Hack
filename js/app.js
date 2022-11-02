@@ -102,9 +102,9 @@ const App = {
 	},
 	createEnemy() {
 		this.enemy.push(
-			new Enemy(this.ctx, this.canvasSize, 525, 170),
-			new Enemy(this.ctx, this.canvasSize, 450, 320),
-			new Enemy(this.ctx, this.canvasSize, 375, 470)
+			new Enemy(this.ctx, this.canvasSize, 500, 160),
+			new Enemy(this.ctx, this.canvasSize, 375, 310),
+			new Enemy(this.ctx, this.canvasSize, 250, 460)
 		);
 	},
 
@@ -134,7 +134,7 @@ const App = {
 			this.enemy.forEach((e) => {
 				let enemyBubbles = [];
 				if (
-					e.enemyPos.x <= b.bubblePos.x + b.bubbleRadius &&
+					e.enemyPos.x <= b.bubblePos.x + b.bubbleSize.w &&
 					e.enemyPos.x + e.enemySize.w >= b.bubblePos.x &&
 					e.enemyPos.y <= b.bubblePos.y &&
 					e.enemyPos.y + e.enemySize.h >= b.bubblePos.y
@@ -179,33 +179,33 @@ const App = {
 			this.platforms.forEach((p) => {
 				if (
 					// Chequea si colisionar con una plataforma
-					p.platformPos.x < b.bubblePos.x + b.bubbleRadius &&
-					p.platformPos.x + p.platformSize.w > b.bubblePos.x - b.bubbleRadius &&
-					p.platformPos.y < b.bubblePos.y + b.bubbleRadius &&
-					p.platformPos.y + p.platformSize.h > b.bubblePos.y - b.bubbleRadius
+					p.platformPos.x < b.bubblePos.x + b.bubbleSize.w &&
+					p.platformPos.x + p.platformSize.w > b.bubblePos.x - b.bubbleSize.w &&
+					p.platformPos.y < b.bubblePos.y + b.bubbleSize.h &&
+					p.platformPos.y + p.platformSize.h > b.bubblePos.y - b.bubbleSize.h
 				) {
 					// Cuando colisiones por ..., haz esto
 					//// Izquierda
-					if (p.platformPos.x < b.bubblePos.x + b.bubbleRadius) {
+					if (p.platformPos.x < b.bubblePos.x + b.bubbleSize.w) {
 						b.bubbleVel.y += 2;
 						b.bubbleVel.x = 0;
 					}
 					//// Derecha
-					if (p.platformPos.x + p.platformSize.w > b.bubblePos.x - b.bubbleRadius) {
+					if (p.platformPos.x + p.platformSize.w > b.bubblePos.x - b.bubbleSize.w) {
 						b.bubbleVel.y += 2;
 						b.bubbleVel.x = 0;
 					}
 					//// Abajo
 					////// Check if facing right
 					if (b.isBubbleFacingRight === true) {
-						if (p.platformPos.y + p.platformSize.h > b.bubblePos.y - b.bubbleRadius) {
+						if (p.platformPos.y + p.platformSize.h > b.bubblePos.y - b.bubbleSize.h) {
 							b.bubbleVel.y = 0;
 							b.bubbleVel.x += 1.4;
 							b.bubblePos.x += b.bubbleVel.x;
 						}
 					} else if (b.isBubbleFacingRight === false) {
 						////// Check if facing left
-						if (p.platformPos.y + p.platformSize.h > b.bubblePos.y - b.bubbleRadius) {
+						if (p.platformPos.y + p.platformSize.h > b.bubblePos.y - b.bubbleSize.h) {
 							b.bubbleVel.y = 0;
 							b.bubbleVel.x -= 1.4;
 							b.bubblePos.x += b.bubbleVel.x;
@@ -246,25 +246,25 @@ const App = {
 		this.player.bubble.forEach((b) => {
 			setTimeout(() => {
 				if (
-					this.player.playerPos.x <= b.bubblePos.x + b.bubbleRadius / 2 &&
-					this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x - b.bubbleRadius &&
-					this.player.playerPos.y <= b.bubblePos.y + b.bubbleRadius &&
-					this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleRadius
+					this.player.playerPos.x <= b.bubblePos.x + b.bubbleSize.w &&
+					this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x + b.bubbleSize.w &&
+					this.player.playerPos.y <= b.bubblePos.y + b.bubbleSize.h &&
+					this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h
 				) {
 					/* if (
-						this.player.playerPos.x <= b.bubblePos.x + b.bubbleRadius &&
-						this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x - b.bubbleRadius &&
-						this.player.playerPos.y <= b.bubblePos.y + b.bubbleRadius
+						this.player.playerPos.x <= b.bubblePos.x + b.bubbleSize.w &&
+						this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x - b.bubbleSize.w &&
+						this.player.playerPos.y <= b.bubblePos.y + b.bubbleSize.h
 					) {
 						let bubbleToDelete = this.player.bubble.indexOf(b)
-						this.player.bubble.splice(bubbleToDelete,1)
+						this.player.bubble.splice(bubbleToDelete, 1)
 					} */
-					if (this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleRadius) {
+					if (this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h) {
 						this.player.playerVel.y = b.bubbleVel.y;
-						this.player.playerPos.y = b.bubblePos.y - b.bubbleRadius - this.player.playerSize.h;
+						this.player.playerPos.y = b.bubblePos.y - this.player.playerSize.h;
 					}
 				}
-			}, 1000);
+			}, 800);
 		});
 	},
 
