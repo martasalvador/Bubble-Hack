@@ -4,10 +4,14 @@ class Platform {
 		this.canvasSize = canvasSize;
 		this.platformSize = { h: 25, w: 500 };
 		this.platformPos = { x: platformPosX, y: platformPosY };
+
+		this.image = new Image();
+		this.image.src = "./images/pixelBgPlat.png";
 	}
 
 	drawPlatform() {
-		this.ctx.fillStyle = "#FF00FF";
-		this.ctx.fillRect(this.platformPos.x, this.platformPos.y, this.platformSize.w, this.platformSize.h);
+		this.ctx.drawImage(this.image, this.platformPos.x, this.platformPos.y, this.platformSize.w, this.platformSize.h);
+		/* this.ctx.fillStyle = "#FF00FF";
+		this.ctx.fillRect(this.platformPos.x, this.platformPos.y, this.platformSize.w, this.platformSize.h); */
 	}
 }

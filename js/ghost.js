@@ -3,12 +3,31 @@ class Ghost {
 		this.ctx = ctx;
 		this.canvasSize = canvasSize;
 		this.ghostPos = { x: 750, y: 20 };
-		this.ghostSize = { h: 40, w: 40 };
-		this.ghostVel = { x: 1, y: 1 };
+		this.ghostSize = { h: 60, w: 60 };
+		this.ghostVel = { x: -2, y: -2 };
+
+		this.image = new Image();
+		this.image.src = "./images/ghost-left.png";
+		this.image.frames = 2;
+		this.image.frameIndex = 0;
 	}
-	drawGhost(playerPos) {
-		this.ctx.fillStyle = "#808080";
-		this.ctx.fillRect(this.ghostPos.x, this.ghostPos.y, this.ghostSize.w, this.ghostSize.h);
+
+	drawGhost(playerPos, framesCounter) {
+		this.ctx.drawImage(
+			this.image,
+			this.image.frameIndex * (this.image.width / this.image.frames),
+			0,
+			this.image.width / this.image.frames - 50,
+			this.image.height - 50,
+			this.ghostPos.x,
+			this.ghostPos.y,
+			this.ghostSize.w,
+			this.ghostSize.h
+		);
+
+		/* this.ctx.fillStyle = "#808080"; */
+		/* this.ctx.fillRect(this.ghostPos.x, this.ghostPos.y, this.ghostSize.w, this.ghostSize.h); */
+		this.animateGhost(framesCounter);
 		this.moveGhost(playerPos);
 	}
 
@@ -22,6 +41,14 @@ class Ghost {
 			this.ghostPos.y += this.ghostVel.y;
 		} else if (playerPos.y < this.ghostPos.y) {
 			this.ghostPos.y -= this.ghostVel.y;
+		}
+	}
+	animateGhost(framesCounter) {
+		if (framesCounter % 5 == 0) {
+			this.image.frameIndex++;
+		}
+		if (this.image.frameIndex >= this.image.frames - 2) {
+			this.image.frameIndex = 0;
 		}
 	}
 }

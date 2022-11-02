@@ -5,7 +5,7 @@ class Player {
 		this.physics = physics;
 		this.canvasSize = canvasSize;
 
-		this.playerSize = { h: 50, w: 50 };
+		this.playerSize = { h: 70, w: 70 };
 		this.playerPos = { x: this.canvasSize.w - 830, y: this.canvasSize.h - this.playerSize.h - 100 };
 		this.playerVel = { x: 0, y: 1 };
 
@@ -13,13 +13,56 @@ class Player {
 		this.bubble = [];
 		this.isFacingRight = true;
 		this.playerColor = "white";
-	}
-	drawPlayer() {
-		this.bubble.forEach((b) => b.drawBubble());
 
-		this.ctx.fillStyle = this.playerColor;
-		this.ctx.fillRect(this.playerPos.x, this.playerPos.y, this.playerSize.w, this.playerSize.h);
+		this.image = new Image();
+		this.image.src = "./images/player-right.png";
+		this.image.frames = 5;
+		this.image.frameIndex = 0;
+		this.isPressed = {
+			right: false,
+			left: false,
+			up: false,
+			space: false,
+		};
+	}
+
+	drawPlayer(framesCounter) {
+		this.bubble.forEach((b) => b.drawBubble(framesCounter));
+
+		/* this.ctx.fillStyle = this.playerColor;
+		this.ctx.fillRect(this.playerPos.x, this.playerPos.y, this.playerSize.w, this.playerSize.h); */
+
+		this.ctx.drawImage(
+			this.image,
+			this.image.frameIndex * (this.image.width / this.image.frames),
+			0,
+			this.image.width / this.image.frames - 41,
+			this.image.height - 41,
+			this.playerPos.x,
+			this.playerPos.y,
+			this.playerSize.w,
+			this.playerSize.h
+		);
+		this.animatePlayer(framesCounter);
+
 		this.movePlayer();
+	}
+
+	animatePlayer(framesCounter) {
+		if (
+			this.isPressed.right === false &&
+			this.isPressed.left === false &&
+			this.isPressed.up === false &&
+			this.isPressed.space === false
+		) {
+			this.image.frameIndex = 5;
+		}
+		if (framesCounter % 5 == 0) {
+			this.image.frameIndex++;
+		}
+		if (this.image.frameIndex >= this.image.frames - 2) {
+			this.image.frameIndex = 0;
+		}
 	}
 
 	shoot() {
@@ -43,50 +86,63 @@ class Player {
 		document.onkeydown = (event) => {
 			switch (event.key) {
 				case this.keys.LEFT:
+					this.isFacingRight = false;
 					while (this.playerVel.x >= -3) {
 						this.playerVel.x -= 1;
+						this.isPressed.left = true;
 					}
-					this.isFacingRight = false;
+
 					break;
 				case this.keys.RIGHT:
+					this.isFacingRight = true;
+					this.isPressed.right = true;
 					while (this.playerVel.x <= 3) {
 						this.playerVel.x += 1;
 					}
-					this.isFacingRight = true;
+
 					break;
 				case this.keys.UP:
+					this.isPressed.up = true;
 					if (this.playerVel.y === 0) {
 						if (this.playerVel.y > -35) {
 							this.playerVel.y -= 25;
 						}
 					}
+
 					break;
 				case this.keys.SPACE:
 					this.shoot();
+					this.isPressed.space = true;
 					break;
 			}
 		};
 		document.onkeyup = (event) => {
 			switch (event.key) {
 				case this.keys.LEFT:
+					this.isPressed.left = false;
 					while (this.playerVel.x < 0) {
 						this.playerVel.x += 0.5;
 					}
 					break;
 				case this.keys.RIGHT:
+					this.isPressed.right = false;
 					while (this.playerVel.x > 0) {
 						this.playerVel.x -= 0.5;
 					}
 					break;
 				case this.keys.UP:
+					this.isPressed.up = false;
 					break;
 				case this.keys.SPACE:
+					this.isPressed.space = false;
 					break;
 			}
 		};
 	}
 
 	movePlayer() {
+		this.isFacingRight ? this.image : (this.image.src = "./images/player-left.png");
+		!this.isFacingRight ? this.image : (this.image.src = "./images/player-right.png");
 		// Check if player can go above the ceiling
 		if (this.playerPos.y < 20) {
 			this.playerPos.y = 20;

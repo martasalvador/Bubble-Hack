@@ -50,6 +50,8 @@
 - [ 💁‍♀️ ] Si encierra al enemigo con la burbuja --> Suma 100 puntos
 - [ 💁‍♀️ ] Al morir tarda 0.5s en reaparecer
 - [ 💁‍♀️ ] Al reaparecer tarda un poco en dejarte mover
+- [ 💁‍♀️ ] Sprite no se mueve al no pulsar ninguna tecla
+- [ 💁‍♀️ ] Sprite abre la boca al lanzar burbujas
 
 ## BUBBLES
 
@@ -94,6 +96,16 @@
 - [ 💁‍♀️ ] Añadir botón de restart
 - [ 💁‍♀️ ] Añadir pantalla de victoria
 
+##  SPRITES
+
+- [ 💁‍♀️ ] Player
+- [ 💁‍♀️ ] Enemigos
+- [ 💁‍♀️ ] Fruta
+- [ 💁‍♀️ ] Burbuja
+- [ 💁‍♀️ ] Ghost
+- [ 💁‍♀️ ] Background
+- [ 💁 ] Plataformas
+
 ## BONUS
 
 - [ ] Nuevos niveles
@@ -102,7 +114,10 @@
 ## BUGS
 
 - [ ] Clean code
+- [ ] Burbujas salen por la derecha de la pantalla
+- [ ] Burbujas salen de menor a mayor por la izq
 - [ ] Revisar funcion checkbubbleplatformcollision
+- [ ] Tarde en aparecer victory
 - [ ] Burbujas cada vez que lanzas una se aceleran en la colision con plataforma
 - [ 💁‍♀️ ] Personaje acelera hasta el infinito
 - [ 💁‍♀️ ] Enemigos velocidades distintas
