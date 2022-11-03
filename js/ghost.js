@@ -32,10 +32,16 @@ class Ghost {
 	}
 
 	moveGhost(playerPos) {
-		if (playerPos.x === this.ghostPos.x) {
+		/* 		if (playerPos.x === this.ghostPos.x - this.ghostVel.x) {
 			this.image.src = "./images/ghost-left.png";
-		}
-		if (playerPos.x < this.ghostPos.x) {
+		} */
+		if (
+			playerPos.x < this.ghostPos.x &&
+			playerPos.x + 70 < this.ghostPos.x + this.ghostSize.w &&
+			this.ghostPos.x < playerPos.x + 70
+		) {
+			console.log("hola");
+		} else if (playerPos.x < this.ghostPos.x) {
 			this.ghostPos.x -= this.ghostVel.x;
 			this.image.src = "./images/ghost-left.png";
 		} else if (playerPos.x > this.ghostPos.x) {

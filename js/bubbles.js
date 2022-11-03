@@ -57,6 +57,7 @@ class Bubble {
 					this.bubblePos.y -= this.bubbleVel.y;
 				} else {
 					this.bubblePos.y = 100;
+					this.bubbleVel.x = -1;
 				}
 			}
 			if (this.bubblePos.x > this.maxDistanceRight) {
@@ -65,6 +66,7 @@ class Bubble {
 					this.bubblePos.y -= this.bubbleVel.y;
 				} else {
 					this.bubblePos.y = 100;
+					this.bubbleVel.x = -1;
 				}
 			}
 			this.bubblePos.x += this.bubbleVel.x;
@@ -84,6 +86,7 @@ class Bubble {
 					this.bubblePos.y -= this.bubbleVel.y;
 				} else {
 					this.bubblePos.y = 100;
+					this.bubbleVel.x = -1;
 				}
 			}
 
@@ -93,6 +96,7 @@ class Bubble {
 					this.bubblePos.y -= this.bubbleVel.y;
 				} else {
 					this.bubblePos.y = 100;
+					this.bubbleVel.x = -1;
 				}
 			}
 			this.bubblePos.x -= this.bubbleVel.x;

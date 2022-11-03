@@ -21,6 +21,7 @@ canvas {
 	animation: game 4s ease-in-out, slide-in-game 3s ease-in-out;
 	position: absolute;
 	bottom: 40px;
+	z-index: 2;
 	/* scale: 0.85; */
 }
 
@@ -40,7 +41,7 @@ div {
 	animation: slide-out 3s ease-in-out;
 }
 
-img {
+.bubblelogo {
 	width: 40%;
 	height: 40%;
 	margin-inline: auto;
@@ -100,6 +101,24 @@ button:hover {
 	display: none;
 }
 
+.marta {
+	width: 25%;
+	height: 80%;
+	position: absolute;
+	left: 0;
+	bottom: 80px;
+	animation: game 4s ease-in-out, slide-in-us 3s ease-in-out;
+}
+
+.manu {
+	width: 25%;
+	height: 80%;
+	position: absolute;
+	right: -10px;
+	bottom: 80px;
+	animation: game 4s ease-in-out, slide-in-us 3s ease-in-out;
+}
+
 @keyframes glow {
 	0% {
 		box-shadow: 0 0 0 peachpuff;
@@ -144,6 +163,16 @@ button:hover {
 
 	100% {
 		bottom: 40px;
+	}
+}
+
+@keyframes slide-in-us {
+	0% {
+		bottom: -800px;
+	}
+
+	100% {
+		bottom: 80px;
 	}
 }
 
