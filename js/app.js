@@ -391,6 +391,8 @@ const App = {
 		if (this.lives <= 0 || this.time <= 0 || this.score <= 0) {
 			this.clearAll();
 			this.drawGameOver();
+			this.ghost.ghostVel.x = -10000;
+			this.ghost.ghostVel.y = -10000;
 			document.querySelector("audio").pause();
 			/* this.gameoverSound.play(); */
 		}
@@ -432,6 +434,9 @@ const App = {
 			this.clearAll();
 
 			this.drawVictory();
+
+			this.ghost.ghostVel.x = -10000;
+			this.ghost.ghostVel.y = -10000;
 
 			document.querySelector("audio").pause();
 			/* this.victorySound.play(); */
