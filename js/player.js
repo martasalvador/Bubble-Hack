@@ -86,6 +86,9 @@ class Player {
 	}
 
 	setListeners() {
+		let jumpSound = new Audio("./audio/jump.wav");
+		let shootSound = new Audio("./audio/bubble.wav");
+
 		document.onkeydown = (event) => {
 			switch (event.key) {
 				case this.keys.LEFT:
@@ -111,11 +114,13 @@ class Player {
 							this.playerVel.y -= 25;
 						}
 					}
-
+					jumpSound.play();
 					break;
 				case this.keys.SPACE:
+					event.preventDefault();
 					this.shoot();
 					this.isPressed.space = true;
+					shootSound.play();
 					break;
 			}
 		};
@@ -137,6 +142,7 @@ class Player {
 					this.isPressed.up = false;
 					break;
 				case this.keys.SPACE:
+					event.preventDefault();
 					this.isPressed.space = false;
 					break;
 			}
