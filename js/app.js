@@ -297,7 +297,7 @@ const App = {
 	},
 
 	ghostPlayerCollision() {
-		let ghostSound = new Audio("./audio/ghost-ene.wav");
+		/* let ghostSound = new Audio("./audio/ghost-ene.wav"); */
 
 		if (
 			this.player.playerPos.x <= this.ghost.ghostPos.x + this.ghost.ghostSize.w &&
@@ -310,7 +310,7 @@ const App = {
 					this.score -= 100;
 				}
 			}
-			ghostSound.play();
+			/* ghostSound.play(); */
 			this.player.playerPos.x = -1900;
 			this.player.playerPos.y = 1200;
 			this.ghost.ghostPos.x = 920;
@@ -326,7 +326,7 @@ const App = {
 	},
 
 	calculateLives() {
-		let enemySound = new Audio("./audio/ghost-ene.wav");
+		/* let enemySound = new Audio("./audio/ghost-ene.wav"); */
 
 		this.enemy.forEach((e) => {
 			if (
@@ -336,7 +336,7 @@ const App = {
 				this.player.playerPos.y + this.player.playerSize.h > e.enemyPos.y
 			) {
 				if (this.lives > 0) {
-					enemySound.play();
+					/* enemySound.play(); */
 					this.lives--;
 					this.player.playerColor = "#1f001b";
 					this.player.playerPos.x = -1900;
@@ -401,13 +401,13 @@ const App = {
 	},
 
 	isGameOver() {
-		let gameoverSound = new Audio("./audio/gameover.wav");
+		/* let gameoverSound = new Audio("./audio/gameover.wav"); */
 
 		if (this.lives <= 0 || this.time <= 0 || this.score <= 0) {
 			this.clearAll();
 			this.drawGameOver();
 			document.querySelector("audio").pause();
-			gameoverSound.play();
+			/* gameoverSound.play(); */
 		}
 	},
 
@@ -442,13 +442,13 @@ const App = {
 		this.ctx.closePath();
 	},
 	isVictory() {
-		let victorySound = new Audio("./audio/win.wav");
+		/* let victorySound = new Audio("./audio/win.wav"); */
 
 		if (this.enemy.length === 0 && this.fruit.length === 0) {
 			this.clearAll();
 			this.drawVictory();
 			document.querySelector("audio").pause();
-			victorySound.play();
+			/* victorySound.play(); */
 		}
 	},
 };

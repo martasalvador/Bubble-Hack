@@ -2,9 +2,9 @@ const game = document.querySelector("canvas");
 const logo = document.querySelector("div");
 const startBtn = document.querySelector("button");
 const year = document.querySelector(".year");
-/* const audio = document.querySelector("audio");
+const audio = document.querySelector("audio");
 
-audio.volume = 0.1; */
+audio.volume = 0.05;
 
 startBtn.onclick = () => {
 	logo.classList.add("div-out");
