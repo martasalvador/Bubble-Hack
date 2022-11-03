@@ -24,7 +24,7 @@ const App = {
 	fruit: [],
 	FPS: 60,
 	lives: 3,
-	time: 2000,
+	time: 61,
 	score: 1000,
 	ghost: undefined,
 	framesCounter: 0,
