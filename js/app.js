@@ -11,6 +11,7 @@ const App = {
 		RIGHT: "ArrowRight",
 		LEFT: "ArrowLeft",
 		SPACE: " ",
+		ENTER: "Enter",
 	},
 	physics: {
 		gravity: 2,
@@ -27,6 +28,13 @@ const App = {
 	score: 1000,
 	ghost: undefined,
 	framesCounter: 0,
+	isGame: true,
+
+	enemySound: new Audio("./audio/ghost-ene.wav"),
+	ghostSound: new Audio("./audio/ghost-ene.wav"),
+	victorySound: new Audio("./audio/win.wav"),
+	gameoverSound: new Audio("./audio/gameover.wav"),
+	fruitSound: new Audio("./audio/fruit.wav"),
 
 	init() {
 		this.setContext();
@@ -42,6 +50,7 @@ const App = {
 
 		this.start();
 	},
+
 	setContext() {
 		this.ctx = document.querySelector("#canvas").getContext("2d");
 	},
@@ -63,7 +72,6 @@ const App = {
 			this.fruitPlatformCollision();
 			this.playerBubbleCollision();
 			this.ghostPlayerCollision();
-			/* this.enemyBubblePlayerCollision(); */
 			this.deleteOldBubbles();
 			this.isVictory();
 			this.isGameOver();
@@ -148,8 +156,6 @@ const App = {
 					b.bubbleSize.w = 60;
 					b.bubbleSize.h = 60;
 					b.bubblePos.y -= 20;
-
-					this.fruit.push(new Fruit(this.ctx, this.canvasSize, this.physics));
 				}
 			});
 		});
@@ -247,58 +253,34 @@ const App = {
 		});
 	},
 
-	/* enemyBubblePlayerCollision() {
+	playerBubbleCollision() {
 		this.player.bubble.forEach((b) => {
+			/* setTimeout(() => {
+				
+			}, 800); */
 			if (
-				b.hasEnemy === true &&
 				this.player.playerPos.x <= b.bubblePos.x + b.bubbleSize.w &&
 				this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x + b.bubbleSize.w &&
 				this.player.playerPos.y <= b.bubblePos.y + b.bubbleSize.h &&
 				this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h
 			) {
+				if (b.hasEnemy === true) {
+					let bubbleToDelete = this.player.bubble.indexOf(b);
+					this.player.bubble.splice(bubbleToDelete, 1);
+					console.log("índice", bubbleToDelete);
+					this.fruit.push(new Fruit(this.ctx, this.canvasSize, this.physics));
+					this.playerPos.y -= 50;
+					this.fruitSound.play();
+				}
 				if (this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h) {
-					let bubbledEnemyToDelete = this.player.bubble.indexOf(b);
-					this.player.bubble.splice(bubbledEnemyToDelete, 1);
+					this.player.playerVel.y = b.bubbleVel.y;
+					this.player.playerPos.y = b.bubblePos.y - this.player.playerSize.h;
 				}
 			}
-		});
-	}, */
-
-	playerBubbleCollision() {
-		this.player.bubble.forEach((b) => {
-			setTimeout(() => {
-				if (
-					this.player.playerPos.x <= b.bubblePos.x + b.bubbleSize.w &&
-					this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x + b.bubbleSize.w &&
-					this.player.playerPos.y <= b.bubblePos.y + b.bubbleSize.h &&
-					this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h
-				) {
-					/* if (
-						this.player.playerPos.x <= b.bubblePos.x + b.bubbleSize.w + 30 &&
-						this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x - b.bubbleSize.w + 30 &&
-						this.player.playerPos.y <=
-						b.bubblePos.y + b.bubbleSize.h + 30
-					) {
-						let bubbleToDelete = this.player.bubble.indexOf(b);
-						this.player.bubble.splice(bubbleToDelete, 1);
-					} */
-
-					if (b.hasEnemy === true) {
-						let bubbleToDelete = this.player.bubble.indexOf(b);
-						this.player.bubble.splice(bubbleToDelete, 1);
-					}
-					if (this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h) {
-						this.player.playerVel.y = b.bubbleVel.y;
-						this.player.playerPos.y = b.bubblePos.y - this.player.playerSize.h;
-					}
-				}
-			}, 800);
 		});
 	},
 
 	ghostPlayerCollision() {
-		/* let ghostSound = new Audio("./audio/ghost-ene.wav"); */
-
 		if (
 			this.player.playerPos.x <= this.ghost.ghostPos.x + this.ghost.ghostSize.w &&
 			this.player.playerPos.x + this.player.playerSize.w >= this.ghost.ghostPos.x &&
@@ -310,7 +292,7 @@ const App = {
 					this.score -= 100;
 				}
 			}
-			/* ghostSound.play(); */
+			this.ghostSound.play();
 			this.player.playerPos.x = -1900;
 			this.player.playerPos.y = 1200;
 			this.ghost.ghostPos.x = 920;
@@ -326,8 +308,6 @@ const App = {
 	},
 
 	calculateLives() {
-		/* let enemySound = new Audio("./audio/ghost-ene.wav"); */
-
 		this.enemy.forEach((e) => {
 			if (
 				this.player.playerPos.x < e.enemyPos.x + e.enemySize.w &&
@@ -336,7 +316,7 @@ const App = {
 				this.player.playerPos.y + this.player.playerSize.h > e.enemyPos.y
 			) {
 				if (this.lives > 0) {
-					/* enemySound.play(); */
+					this.enemySound.play();
 					this.lives--;
 					this.player.playerColor = "#1f001b";
 					this.player.playerPos.x = -1900;
@@ -379,35 +359,40 @@ const App = {
 	},
 
 	drawGameOver() {
+		this.ctx.textAlign = "center";
 		this.ctx.fillStyle = "black";
 		this.ctx.fillRect(0, 0, this.canvasSize.w, this.canvasSize.h);
 
 		this.ctx.fillStyle = "white";
 		this.ctx.beginPath();
 		this.ctx.font = "70px monospace";
-		this.ctx.fillText("GAME OVER", 250, 250);
+		this.ctx.fillText("GAME OVER", this.canvasSize.w / 2, 250);
 		this.ctx.closePath();
 
 		this.ctx.fillStyle = "#FF00FF";
 		this.ctx.beginPath();
 		this.ctx.font = "40px monospace";
 		if (this.score === 0) {
-			this.ctx.fillText(`You suck! :)`, 300, 400);
+			this.ctx.fillText(`You suck! :)`, this.canvasSize.w / 2, 400);
 		} else {
-			this.ctx.fillText(`Your score is: ${this.score}`, 210, 400);
+			this.ctx.fillText(`Your score is: ${this.score}`, this.canvasSize.w / 2, 400);
 		}
 		// Cambiar 400 por 370 cuando tengamos botón
+		this.ctx.closePath();
+
+		this.ctx.fillStyle = "white";
+		this.ctx.beginPath();
+		this.ctx.font = "30px monospace";
+		this.ctx.fillText("PRESS BACKSPACE TO RESTART", this.canvasSize.w / 2, 550);
 		this.ctx.closePath();
 	},
 
 	isGameOver() {
-		/* let gameoverSound = new Audio("./audio/gameover.wav"); */
-
 		if (this.lives <= 0 || this.time <= 0 || this.score <= 0) {
 			this.clearAll();
 			this.drawGameOver();
 			document.querySelector("audio").pause();
-			/* gameoverSound.play(); */
+			/* this.gameoverSound.play(); */
 		}
 	},
 
@@ -418,37 +403,38 @@ const App = {
 	},
 
 	drawVictory() {
+		this.ctx.textAlign = "center";
 		this.ctx.fillStyle = "black";
 		this.ctx.fillRect(0, 0, this.canvasSize.w, this.canvasSize.h);
 
 		this.ctx.fillStyle = "white";
 		this.ctx.beginPath();
 		this.ctx.font = "70px monospace";
-		this.ctx.fillText("VICTORY!!", 250, 250);
+		this.ctx.fillText("VICTORY!!", this.canvasSize.w / 2, 250);
 		this.ctx.closePath();
 
 		this.ctx.fillStyle = "#FF00FF";
 		this.ctx.beginPath();
 		this.ctx.font = "40px monospace";
-		this.ctx.fillText(`Your score is: ${this.score}`, 210, 400);
-		// Cambiar 400 por 370 cuando tengamos botón
+		this.ctx.fillText(`Your score is: ${this.score}`, this.canvasSize.w / 2, 370);
 		this.ctx.closePath();
 
 		this.ctx.fillStyle = "white";
 		this.ctx.beginPath();
 		this.ctx.font = "30px monospace";
-		this.ctx.fillText(`Play again?`, 345, 550);
-		// Cambiar 400 por 370 cuando tengamos botón
+		this.ctx.fillText("PRESS BACKSPACE TO RESTART", this.canvasSize.w / 2, 500);
 		this.ctx.closePath();
 	},
 	isVictory() {
-		/* let victorySound = new Audio("./audio/win.wav"); */
+		if (this.enemy.length === 0 && this.fruit.length === 0 && this.player.bubble.length === 0) {
+			this.isGame = false;
 
-		if (this.enemy.length === 0 && this.fruit.length === 0) {
 			this.clearAll();
+
 			this.drawVictory();
+
 			document.querySelector("audio").pause();
-			/* victorySound.play(); */
+			/* this.victorySound.play(); */
 		}
 	},
 };

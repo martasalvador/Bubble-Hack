@@ -7,11 +7,10 @@
 - [ 💁‍♀️ ] Que haya colisión
 - [ 💁‍♀️ ] Que el player lance burbujas
 - [ 💁‍♀️ ] Si burbuja da a Enemy --> Lo encierra en burbuja y sube hacia arriba
-- [ ] ¿?
 
 # TO-DO
 
-- [ ] Efecto flotando al llegar arriba <!-- TICKET -->
+- [ 💁‍♀️ ] Efecto flotando al llegar arriba <!-- TICKET -->
 - [ ] Glitch ghost en misma posicion en x que player <!-- TICKET -->
 - [ ] Si jugador toca burbuja por arriba, salta <!-- Hugo: Sumar a la burbuja -->
 
@@ -131,7 +130,7 @@
 - [ ] Fotos nuestras
 - [ 💁‍♀️ ] Pantalla de inicio bonita
 - [ ] Pantalla victoria bonita
-- [ ] Pantalla game over bonita
+- [ 💁‍♀️ ] Pantalla game over bonita
 
 ## SONIDOS
 

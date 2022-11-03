@@ -69,11 +69,16 @@ class Player {
 	}
 
 	shoot() {
+		let startingPos = this.playerPos.x;
+		if (!this.isFacingRight) {
+			startingPos = this.playerPos.x - 80;
+		}
 		this.bubble.push(
 			new Bubble(
 				this.ctx,
 				this.canvasSize,
-				this.playerPos.x - 15,
+				/* this.playerPos.x - 15, */
+				startingPos,
 				this.playerPos.y - 15,
 				this.playerSize.w,
 				this.playerSize.h,
