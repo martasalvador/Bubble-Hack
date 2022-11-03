@@ -11,8 +11,8 @@
 
 # TO-DO
 
-- [ ] Solo explotan burbujas azules <!-- TICKET -->
 - [ ] Efecto flotando al llegar arriba <!-- TICKET -->
+- [ ] Glitch ghost en misma posicion en x que player <!-- TICKET -->
 - [ ] Si jugador toca burbuja por arriba, salta <!-- Hugo: Sumar a la burbuja -->
 
 ## INTRO
@@ -67,6 +67,7 @@
 - [ 💁‍♀️ ] Solo lanza una burbuja cada 1s
 - [ 💁‍♀️ ] Jugador explota burbujas al tocarlas
 - [ 💁‍♀️ ] Se pone encima de las burbujas
+- [ 💁‍♀️ ] Solo explotan burbujas sin enemigos
 
 ## ENEMIES
 
@@ -82,12 +83,14 @@
 - [ 💁‍♀️ ] Si muere --> Suelta fruta
 - [ 💁‍♀️ ] Suma puntos al coger fruta
 - [ 💁‍♀️ ] Fruta colisiona con las plataformas
+- [ ] Salen frutas aleatorias
 
 ## GHOST ( BONUS )
 
 - [ 💁‍♀️ ] Aparece ghost
 - [ 💁‍♀️ ] Ghost persigue al jugador <!-- YAY -->
 - [ 💁‍♀️ ] Ghost te quita puntos
+- [ 💁‍♀️ ] Se da la vuelta
 
 ##  GAMEOVER
 
@@ -122,13 +125,22 @@
 - [ 💁‍♀️ ] Personaje acelera hasta el infinito
 - [ 💁‍♀️ ] Enemigos velocidades distintas
 
-## STYLE (MAÑANA)
+## STYLE
 
-- [ ] Sonidos
+- [ 💁‍♀️ ] Sonidos
 - [ ] Fotos nuestras
-- [ ] Pantalla de inicio bonita
+- [ 💁‍♀️ ] Pantalla de inicio bonita
 - [ ] Pantalla victoria bonita
 - [ ] Pantalla game over bonita
+
+## SONIDOS
+
+- 2: salto
+- 6: burbuja
+- 14: ghost te ha pillado
+- 15: game over
+- 19: fruta
+- 21: win
 
 ### ANOTACIONES
 

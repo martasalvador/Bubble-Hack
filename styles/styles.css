@@ -14,6 +14,14 @@ body {
 	background-size: 45%;
 	color: white;
 	font-family: "VT323", monospace;
+	position: relative;
+}
+
+canvas {
+	animation: game 4s ease-in-out, slide-in-game 3s ease-in-out;
+	position: absolute;
+	bottom: 40px;
+	/* scale: 0.85; */
 }
 
 div {
@@ -21,13 +29,22 @@ div {
 	flex-direction: column;
 	text-align: center;
 	justify-content: center;
-	gap: 80px;
+	gap: 50px;
 	transition: 0.5s ease-out;
+	position: absolute;
+	bottom: 110px;
+	animation: slide-in 3s ease-in-out;
 }
 
-canvas {
-	animation: game 1s ease-in;
-	scale: 0.85;
+.div-out {
+	animation: slide-out 3s ease-in-out;
+}
+
+img {
+	width: 40%;
+	height: 40%;
+	margin-inline: auto;
+	margin-top: -60px;
 }
 
 h1 {
@@ -35,10 +52,26 @@ h1 {
 	letter-spacing: 5px;
 }
 
-h3 {
-	font-size: 45px;
-	margin-bottom: 100px;
+.names,
+.year {
+	font-size: 25px;
 	letter-spacing: 2px;
+	margin-bottom: 30px;
+	position: absolute;
+	bottom: 5px;
+	text-align: center;
+}
+
+.names {
+	left: 30px;
+}
+
+.year {
+	right: 30px;
+}
+
+.right {
+	right: 70px;
 }
 
 button {
@@ -91,5 +124,35 @@ button:hover {
 	}
 	100% {
 		opacity: 1;
+	}
+}
+
+@keyframes slide-in {
+	0% {
+		bottom: -600px;
+	}
+
+	100% {
+		bottom: 110px;
+	}
+}
+
+@keyframes slide-in-game {
+	0% {
+		bottom: -800px;
+	}
+
+	100% {
+		bottom: 40px;
+	}
+}
+
+@keyframes slide-out {
+	0% {
+		bottom: 110px;
+	}
+
+	100% {
+		bottom: 1000px;
 	}
 }

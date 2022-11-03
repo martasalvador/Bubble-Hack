@@ -63,7 +63,8 @@ const App = {
 			this.fruitPlatformCollision();
 			this.playerBubbleCollision();
 			this.ghostPlayerCollision();
-			// this.deleteOldBubbles();
+			/* this.enemyBubblePlayerCollision(); */
+			this.deleteOldBubbles();
 			this.isVictory();
 			this.isGameOver();
 		}, 1000 / this.FPS);
@@ -143,24 +144,25 @@ const App = {
 					this.enemy.splice(enemyToDelete, 1);
 					this.score += 100;
 					b.image.src = "./images/bubbledEnemy.png";
+					b.hasEnemy = true;
 					b.bubbleSize.w = 60;
 					b.bubbleSize.h = 60;
-					b.bubblePos.y -= 30;
+					b.bubblePos.y -= 20;
+
 					this.fruit.push(new Fruit(this.ctx, this.canvasSize, this.physics));
 				}
 			});
 		});
 	},
 
-	/* deleteOldBubbles() {
+	deleteOldBubbles() {
 		this.player.bubble.forEach((b) => {
-			if (b.bubbleColor === "lightblue") {
-					setTimeout(() => {
-						b.bubblePos.x = 50000;
-					}, 5000);
-				}
+			if (!b.hasEnemy && performance.now() - b.timeShot > 7000) {
+				let bubbleToDelete = this.player.bubble.indexOf(b);
+				this.player.bubble.splice(bubbleToDelete, 1);
+			}
 		});
-	}, */
+	},
 
 	playerFruitCollision() {
 		this.fruit.forEach((f) => {
@@ -245,6 +247,23 @@ const App = {
 		});
 	},
 
+	/* enemyBubblePlayerCollision() {
+		this.player.bubble.forEach((b) => {
+			if (
+				b.hasEnemy === true &&
+				this.player.playerPos.x <= b.bubblePos.x + b.bubbleSize.w &&
+				this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x + b.bubbleSize.w &&
+				this.player.playerPos.y <= b.bubblePos.y + b.bubbleSize.h &&
+				this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h
+			) {
+				if (this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h) {
+					let bubbledEnemyToDelete = this.player.bubble.indexOf(b);
+					this.player.bubble.splice(bubbledEnemyToDelete, 1);
+				}
+			}
+		});
+	}, */
+
 	playerBubbleCollision() {
 		this.player.bubble.forEach((b) => {
 			setTimeout(() => {
@@ -257,11 +276,17 @@ const App = {
 					/* if (
 						this.player.playerPos.x <= b.bubblePos.x + b.bubbleSize.w + 30 &&
 						this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x - b.bubbleSize.w + 30 &&
-						this.player.playerPos.y <= b.bubblePos.y + b.bubbleSize.h + 30
+						this.player.playerPos.y <=
+						b.bubblePos.y + b.bubbleSize.h + 30
 					) {
 						let bubbleToDelete = this.player.bubble.indexOf(b);
 						this.player.bubble.splice(bubbleToDelete, 1);
 					} */
+
+					if (b.hasEnemy === true) {
+						let bubbleToDelete = this.player.bubble.indexOf(b);
+						this.player.bubble.splice(bubbleToDelete, 1);
+					}
 					if (this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h) {
 						this.player.playerVel.y = b.bubbleVel.y;
 						this.player.playerPos.y = b.bubblePos.y - this.player.playerSize.h;
@@ -272,6 +297,8 @@ const App = {
 	},
 
 	ghostPlayerCollision() {
+		let ghostSound = new Audio("./audio/ghost-ene.wav");
+
 		if (
 			this.player.playerPos.x <= this.ghost.ghostPos.x + this.ghost.ghostSize.w &&
 			this.player.playerPos.x + this.player.playerSize.w >= this.ghost.ghostPos.x &&
@@ -283,12 +310,15 @@ const App = {
 					this.score -= 100;
 				}
 			}
-			this.player.playerColor = "#1f001b";
-			this.player.playerPos.x = 900;
-			this.player.playerPos.y = 200;
+			ghostSound.play();
+			this.player.playerPos.x = -1900;
+			this.player.playerPos.y = 1200;
+			this.ghost.ghostPos.x = 920;
+			this.ghost.ghostPos.y = -85;
+
 			setTimeout(() => {
 				this.player.playerPos.x = this.canvasSize.w - 800;
-
+				this.player.image.frameIndex = 0;
 				this.player.playerPos.y = this.canvasSize.h - this.player.playerSize.h - 100;
 				this.player.playerColor = "white";
 			}, 500);
@@ -296,6 +326,8 @@ const App = {
 	},
 
 	calculateLives() {
+		let enemySound = new Audio("./audio/ghost-ene.wav");
+
 		this.enemy.forEach((e) => {
 			if (
 				this.player.playerPos.x < e.enemyPos.x + e.enemySize.w &&
@@ -304,9 +336,13 @@ const App = {
 				this.player.playerPos.y + this.player.playerSize.h > e.enemyPos.y
 			) {
 				if (this.lives > 0) {
+					enemySound.play();
 					this.lives--;
 					this.player.playerColor = "#1f001b";
-					this.player.playerPos.x = this.canvasSize.w - 800;
+					this.player.playerPos.x = -1900;
+					this.player.playerPos.y = 1200;
+					this.ghost.ghostPos.x = 920;
+					this.ghost.ghostPos.y = -85;
 					setTimeout(() => {
 						this.player.playerPos.x = this.canvasSize.w - 800;
 						this.player.playerPos.y = this.canvasSize.h - this.player.playerSize.h - 100;
@@ -365,9 +401,13 @@ const App = {
 	},
 
 	isGameOver() {
+		let gameoverSound = new Audio("./audio/gameover.wav");
+
 		if (this.lives <= 0 || this.time <= 0 || this.score <= 0) {
 			this.clearAll();
 			this.drawGameOver();
+			document.querySelector("audio").pause();
+			gameoverSound.play();
 		}
 	},
 
@@ -402,9 +442,13 @@ const App = {
 		this.ctx.closePath();
 	},
 	isVictory() {
+		let victorySound = new Audio("./audio/win.wav");
+
 		if (this.enemy.length === 0 && this.fruit.length === 0) {
 			this.clearAll();
 			this.drawVictory();
+			document.querySelector("audio").pause();
+			victorySound.play();
 		}
 	},
 };

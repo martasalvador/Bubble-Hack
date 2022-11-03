@@ -32,10 +32,15 @@ class Ghost {
 	}
 
 	moveGhost(playerPos) {
+		if (playerPos.x === this.ghostPos.x) {
+			this.image.src = "./images/ghost-left.png";
+		}
 		if (playerPos.x < this.ghostPos.x) {
 			this.ghostPos.x -= this.ghostVel.x;
+			this.image.src = "./images/ghost-left.png";
 		} else if (playerPos.x > this.ghostPos.x) {
 			this.ghostPos.x += this.ghostVel.x;
+			this.image.src = "./images/ghost-right.png";
 		}
 		if (playerPos.y > this.ghostPos.y) {
 			this.ghostPos.y += this.ghostVel.y;
@@ -44,10 +49,10 @@ class Ghost {
 		}
 	}
 	animateGhost(framesCounter) {
-		if (framesCounter % 5 == 0) {
+		if (framesCounter % 30 == 0) {
 			this.image.frameIndex++;
 		}
-		if (this.image.frameIndex >= this.image.frames - 2) {
+		if (this.image.frameIndex >= this.image.frames) {
 			this.image.frameIndex = 0;
 		}
 	}
