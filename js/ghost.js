@@ -4,7 +4,7 @@ class Ghost {
 		this.canvasSize = canvasSize;
 		this.ghostPos = { x: 920, y: -85 };
 		this.ghostSize = { h: 60, w: 60 };
-		this.ghostVel = { x: -20, y: -20 }; // CAMBIAR A 1!
+		this.ghostVel = { x: 1, y: 1 };
 
 		this.image = new Image();
 		this.image.src = "./images/ghost-left.png";
@@ -40,7 +40,13 @@ class Ghost {
 			playerPos.x + 70 < this.ghostPos.x + this.ghostSize.w &&
 			this.ghostPos.x < playerPos.x + 70
 		) {
-			console.log("hola");
+			this.image.src = "./images/ghost-right.png";
+		} else if (
+			playerPos.x > this.ghostPos.x &&
+			playerPos.x - 70 > this.ghostPos.x + this.ghostSize.w &&
+			this.ghostPos.x > playerPos.x - 70
+		) {
+			this.image.src = "./images/ghost-right.png";
 		} else if (playerPos.x < this.ghostPos.x) {
 			this.ghostPos.x -= this.ghostVel.x;
 			this.image.src = "./images/ghost-left.png";

@@ -12,7 +12,7 @@
 
 - [ 💁‍♀️ ] Efecto flotando al llegar arriba <!-- TICKET -->
 - [ ] Glitch ghost en misma posicion en x que player <!-- TICKET -->
-- [ ] Si jugador toca burbuja por arriba, salta <!-- Hugo: Sumar a la burbuja -->
+- [ 💁‍♀️ ] Si jugador toca burbuja por arriba, salta
 
 ## INTRO
 
@@ -82,7 +82,6 @@
 - [ 💁‍♀️ ] Si muere --> Suelta fruta
 - [ 💁‍♀️ ] Suma puntos al coger fruta
 - [ 💁‍♀️ ] Fruta colisiona con las plataformas
-- [ ] Salen frutas aleatorias
 
 ## GHOST ( BONUS )
 
@@ -106,10 +105,11 @@
 - [ 💁‍♀️ ] Burbuja
 - [ 💁‍♀️ ] Ghost
 - [ 💁‍♀️ ] Background
-- [ 💁 ] Plataformas
+- [ 💁‍♀️ ] Plataformas
 
 ## BONUS
 
+- [ 💁‍♀️ ] Estrellas
 - [ ] Nuevos niveles
 - [ ] ¿Multiplayer? xd
 
@@ -127,9 +127,8 @@
 ## STYLE
 
 - [ 💁‍♀️ ] Sonidos
-- [ ] Fotos nuestras
+- [ 💁‍♀️ ] Fotos nuestras
 - [ 💁‍♀️ ] Pantalla de inicio bonita
-- [ ] Pantalla victoria bonita
 - [ 💁‍♀️ ] Pantalla game over bonita
 
 ## SONIDOS
