@@ -11,7 +11,6 @@ const App = {
 		RIGHT: "ArrowRight",
 		LEFT: "ArrowLeft",
 		SPACE: " ",
-		ENTER: "Enter",
 	},
 	physics: {
 		gravity: 2,
