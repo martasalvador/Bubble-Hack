@@ -29,9 +29,6 @@ class Player {
 	drawPlayer(framesCounter) {
 		this.bubble.forEach((b) => b.drawBubble(framesCounter));
 
-		/* this.ctx.fillStyle = this.playerColor;
-		this.ctx.fillRect(this.playerPos.x, this.playerPos.y, this.playerSize.w, this.playerSize.h); */
-
 		this.ctx.drawImage(
 			this.image,
 			this.image.frameIndex * (this.image.width / this.image.frames),
@@ -77,7 +74,6 @@ class Player {
 			new Bubble(
 				this.ctx,
 				this.canvasSize,
-				/* this.playerPos.x - 15, */
 				startingPos,
 				this.playerPos.y - 15,
 				this.playerSize.w,

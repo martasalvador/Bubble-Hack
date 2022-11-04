@@ -11,7 +11,5 @@ class Platform {
 
 	drawPlatform() {
 		this.ctx.drawImage(this.image, this.platformPos.x, this.platformPos.y, this.platformSize.w, this.platformSize.h);
-		/* this.ctx.fillStyle = "#FF00FF";
-		this.ctx.fillRect(this.platformPos.x, this.platformPos.y, this.platformSize.w, this.platformSize.h); */
 	}
 }

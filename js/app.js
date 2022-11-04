@@ -141,7 +141,6 @@ const App = {
 	bubbleEnemyCollision() {
 		this.player.bubble.forEach((b) => {
 			this.enemy.forEach((e) => {
-				let enemyBubbles = [];
 				if (
 					e.enemyPos.x <= b.bubblePos.x + b.bubbleSize.w &&
 					e.enemyPos.x + e.enemySize.w >= b.bubblePos.x &&
@@ -181,6 +180,7 @@ const App = {
 				let fruitToDelete = this.fruit.indexOf(f);
 				this.fruit.splice(fruitToDelete, 1);
 				this.score += 100;
+				this.fruitSound.play();
 			}
 		});
 	},
@@ -255,9 +255,6 @@ const App = {
 
 	playerBubbleCollision() {
 		this.player.bubble.forEach((b) => {
-			/* setTimeout(() => {
-				
-			}, 800); */
 			if (
 				this.player.playerPos.x <= b.bubblePos.x + b.bubbleSize.w &&
 				this.player.playerPos.x + this.player.playerSize.w >= b.bubblePos.x + b.bubbleSize.w &&
@@ -270,7 +267,6 @@ const App = {
 					console.log("índice", bubbleToDelete);
 					this.fruit.push(new Fruit(this.ctx, this.canvasSize, this.physics));
 					this.playerPos.y -= 50;
-					this.fruitSound.play();
 				}
 				if (this.player.playerPos.y + this.player.playerSize.h >= b.bubblePos.y - b.bubbleSize.h) {
 					this.player.playerVel.y = b.bubbleVel.y;
@@ -377,7 +373,6 @@ const App = {
 		} else {
 			this.ctx.fillText(`Your score is: ${this.score}`, this.canvasSize.w / 2, 400);
 		}
-		// Cambiar 400 por 370 cuando tengamos botón
 		this.ctx.closePath();
 
 		this.ctx.fillStyle = "white";
@@ -394,7 +389,6 @@ const App = {
 			this.ghost.ghostVel.x = -10000;
 			this.ghost.ghostVel.y = -10000;
 			document.querySelector("audio").pause();
-			/* this.gameoverSound.play(); */
 		}
 	},
 
@@ -439,7 +433,6 @@ const App = {
 			this.ghost.ghostVel.y = -10000;
 
 			document.querySelector("audio").pause();
-			/* this.victorySound.play(); */
 		}
 	},
 };
