@@ -1,6 +1,6 @@
 const App = {
 	appName: "BUBBLE HACK",
-	version: "20.2.4",
+	version: "27.2.4",
 	license: undefined,
 	author: "Marta Salvador y Manuel Atance",
 	description: "Mi primerito juego",
