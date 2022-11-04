@@ -351,7 +351,7 @@ const App = {
 	drawTime(text) {
 		this.ctx.fillStyle = "white";
 		this.ctx.font = "25px monospace";
-		this.ctx.fillText(text, 790, 60);
+		this.ctx.fillText(text, 820, 60);
 	},
 
 	drawGameOver() {
