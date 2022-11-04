@@ -30,7 +30,7 @@ body {
 	transition: 0.5s ease-out;
 	position: absolute;
 	bottom: 110px;
-	animation: slide-in 3s ease-in-out;
+	animation: slide-in 4s ease-in-out;
 }
 
 .div-out {
@@ -87,7 +87,7 @@ h1 {
 
 @keyframes slide-in-game {
 	0% {
-		padding-top: 2000px;
+		padding-top: 2500px;
 	}
 
 	100% {
