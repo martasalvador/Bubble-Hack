@@ -24,8 +24,6 @@ class Fruit {
 			this.fruitSize.w,
 			this.fruitSize.h
 		),
-			/* (this.ctx.fillStyle = "#ffdd00"); */
-			/* this.ctx.fillRect(this.fruitPos.x, this.fruitPos.y, this.fruitSize.w, this.fruitSize.h); */
 			this.moveFruit();
 	}
 	moveFruit() {

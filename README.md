@@ -10,8 +10,8 @@
 
 # TO-DO
 
-- [ 💁‍♀️ ] Efecto flotando al llegar arriba <!-- TICKET -->
-- [ ] Glitch ghost en misma posicion en x que player <!-- TICKET -->
+- [ 💁‍♀️ ] Efecto flotando al llegar arriba
+- [ 💁‍♀️ ] Glitch ghost en misma posicion en x que player
 - [ 💁‍♀️ ] Si jugador toca burbuja por arriba, salta
 
 ## INTRO
@@ -59,7 +59,7 @@
 - [ 💁‍♀️ ] Colisiona con enemigo
 - [ 💁‍♀️ ] Si colisiona con enemigo se convierte enemigo en burbuja y sube hacia arriba
 - [ 💁‍♀️ ] Máximo 12 burbujas en pantalla, si hay más se elimina la primera creada
-- [ 💁‍♀️ ] Colisionan con plataformas <!-- REVISAR VELOCIDAD - BUGS -->
+- [ 💁‍♀️ ] Colisionan con plataformas
 - [ 💁‍♀️ ] Las burbujas no pueden salir del canvas
 - [ 💁‍♀️ ] Crear burbujas en ambos sentidos
 - [ 💁‍♀️ ] Burbujas suben por la izquierda
